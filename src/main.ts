@@ -6,14 +6,14 @@ import { getController } from "./controllers/get-controller";
 import { Controller, ControllerConfig } from "./controllers/controller";
 import pjson from "../package.json";
 
-import "./editor.ts";
+import "./editor";
 
 class SliderEntityRow extends LitElement {
   _config: ControllerConfig;
   ctrl: Controller;
 
   @property() hass: any;
-  @property() hide_state: boolean;
+  @property({ type: Boolean }) hide_state: boolean;
   @query("ha-slider") _slider?;
 
   setConfig(config: ControllerConfig) {
