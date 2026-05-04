@@ -9,7 +9,7 @@ const dev = process.env.ROLLUP_WATCH;
 export default {
   input: "src/main.ts",
   output: {
-    file: "slider-entity-row.js",
+    file: "dist/slider-entity-row.js",
     format: "es",
   },
   plugins: [

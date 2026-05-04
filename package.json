@@ -1,7 +1,7 @@
 {
   "name": "slider-entity-row",
   "private": true,
-  "version": "17.5.0",
+  "version": "18.0.0",
   "type": "module",
   "description": "slider-entity-row =================",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com:thomasloven/lovelace-slider-entity-row"
+    "url": "github.com:Lint-Free-Technology/lovelace-slider-entity-row"
   },
   "keywords": [],
   "author": "Thomas Lovén",
@@ -20,8 +20,13 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
     "rollup": "^4.37.0",
     "rollup-plugin-typescript2": "^0.36.0",
+    "semantic-release": "^25.0.3",
     "typescript": "^5.8.2"
   },
   "dependencies": {
