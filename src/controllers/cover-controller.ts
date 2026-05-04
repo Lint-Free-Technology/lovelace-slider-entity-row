@@ -68,7 +68,7 @@ export class CoverController extends Controller {
     const stateObj = hass.states[this.stateObj.entity_id];
     console.log("Toggle", hass);
     return html`
-    <ha-cover-controls .hass=${hass} .stateObj=${stateObj}></ha-cover_controls>
+    <ha-cover-controls .hass=${hass} .stateObj=${stateObj}></ha-cover-controls>
     `;
   }
 

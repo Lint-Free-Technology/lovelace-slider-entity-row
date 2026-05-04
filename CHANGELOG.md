@@ -1,3 +1,9 @@
+## [18.0.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v18.0.0...v18.0.1) (2026-05-04)
+
+### 📦 Dependency Upgrades
+
+* Update typescript to v6 and various security and build dependency updates ([b56fa75](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/b56fa753a4f4cad349c4014427b708f183abd247))
+
 ## [18.0.0](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v17.9.9...v18.0.0) (2026-05-04)
 
 ### ⭐ New Features
