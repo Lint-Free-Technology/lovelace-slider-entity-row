@@ -212,9 +212,11 @@ class SliderEntityRow extends LitElement {
 
 if (!customElements.get("slider-entity-row")) {
   customElements.define("slider-entity-row", SliderEntityRow);
-  console.info(
-    `%cSLIDER-ENTITY-ROW ${pjson.version} IS INSTALLED`,
-    "color: green; font-weight: bold",
+  console.groupCollapsed(
+    `%c💡 SLIDER-ENTITY-ROW ${pjson.version} IS INSTALLED 💡`,
+    "color: white; background-color: #CE3226; padding: 2px 5px; font-weight: bold; border-radius: 5px;",
     ""
   );
+  console.log('Readme:', 'https://github.com/Lint-Free-Technology/lovelace-slider-entity-row');
+  console.groupEnd();
 }
