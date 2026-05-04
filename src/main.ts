@@ -188,9 +188,10 @@ class SliderEntityRow extends LitElement {
         justify-content: flex-end;
         flex: 7;
         height: 40px;
+        gap: 8px !important;
       }
       .state {
-        min-width: 45px;
+        min-width: 38px;
         text-align: end;
       }
       ha-entity-toggle {
