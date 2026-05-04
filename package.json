@@ -30,7 +30,7 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-env": "^7.29.3",
     "lit": "^3.2.1"
   }
 }
