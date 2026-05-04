@@ -10,7 +10,7 @@ body:
       placeholder: |
         Core: 2026.2.0
         Frontend: 20260128.6
-        auto-entities: 2.0.0
+        slider-entity-row: 18.0.0
     validations:
       required: true
   - type: dropdown
