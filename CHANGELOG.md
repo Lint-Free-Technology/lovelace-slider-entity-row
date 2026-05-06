@@ -1,3 +1,9 @@
+## [18.0.2-beta.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v18.0.1...v18.0.2-beta.1) (2026-05-06)
+
+### 🐞 Bug Fixes
+
+* Restore state min-width: 45px to realign toggle after 2026.5.0 ([3bfeecb](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/3bfeecb49d01c6226413f652a2aed49f761e74da))
+
 ## [18.0.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v18.0.0...v18.0.1) (2026-05-04)
 
 ### 📦 Dependency Upgrades
