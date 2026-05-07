@@ -11,23 +11,7 @@
 
 ### ⚙️ Miscellaneous
 
-* Support  as a first-class light attribute alias for  ([[#21](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/21)](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/21)) ([e2836d4](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/e2836d4aaf02f5192099776e10a43aaf60e1076a))
-
-## [18.1.0-beta.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v18.0.2-beta.1...v18.1.0-beta.1) (2026-05-07)
-
-### ⭐ New Features
-
-* Add theme vars for slider thumb size, track thickness, and thumb shadow ([#22](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/22)) ([3c5ef93](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/3c5ef93ac4ca24d578b7cadb32a351aef4caaf99))
-
-### ⚙️ Miscellaneous
-
-* Support  as a first-class light attribute alias for  ([[#21](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/21)](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/21)) ([e2836d4](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/e2836d4aaf02f5192099776e10a43aaf60e1076a))
-
-## [18.0.2-beta.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v18.0.1...v18.0.2-beta.1) (2026-05-06)
-
-### 🐞 Bug Fixes
-
-* Restore state min-width: 45px to realign toggle after 2026.5.0 ([3bfeecb](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/3bfeecb49d01c6226413f652a2aed49f761e74da))
+* Support `color_temp_kelvin` as a first-class light attribute keeping `color_temp` as legacy alias ([[#21](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/21)](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/21)) ([e2836d4](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/e2836d4aaf02f5192099776e10a43aaf60e1076a))
 
 ## [18.0.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v18.0.0...v18.0.1) (2026-05-04)
 
