@@ -61,6 +61,17 @@ Most general Entities row options like `name`, `icon` and `tap_action` et.al. ar
 
 ![options](https://user-images.githubusercontent.com/1299821/59467902-19dd8380-8e31-11e9-9173-97c9b6be3179.png)
 
+### CSS variables
+
+The slider exposes the following theme variables:
+
+| Variable                          | Description                               | Default                                      |
+| --------------------------------- | ----------------------------------------- | -------------------------------------------- |
+| `--slider-entity-row-thumb-height` | Slider thumb height                        | `16px`                                       |
+| `--slider-entity-row-thumb-width`  | Slider thumb width                         | `16px`                                       |
+| `--slider-entity-row-track-size`   | Slider track thickness                     | `var(--ha-slider-track-size, 4px)`           |
+| `--slider-entity-row-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                                    |
+
 <details><summary>YAML code for screenshot above</summary>
 
 ```yaml
