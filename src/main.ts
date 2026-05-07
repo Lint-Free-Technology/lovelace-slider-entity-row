@@ -134,9 +134,9 @@ class SliderEntityRow extends LitElement {
                   (c.value = (
                     this.shadowRoot.querySelector("ha-slider") as any
                   ).value)}
-                class=${`slider-entity-row ${
-                  this._config.full_row || this._config.grow ? "full" : ""
-                }`.trim()}
+                class=${`slider-entity-row${
+                  this._config.full_row || this._config.grow ? " full" : ""
+                }`}
                 ignore-bar-touch
               ></ha-slider>
             `

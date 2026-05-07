@@ -67,10 +67,10 @@ The slider exposes the following theme variables:
 
 | Variable                          | Description                               | Default                                      |
 | --------------------------------- | ----------------------------------------- | -------------------------------------------- |
-| `--slider-entity-row-thumb-height` | Slider thumb height                        | `16px`                                       |
-| `--slider-entity-row-thumb-width`  | Slider thumb width                         | `16px`                                       |
-| `--slider-entity-row-track-size`   | Slider track thickness                     | `var(--ha-slider-track-size, 4px)`           |
-| `--slider-entity-row-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                                    |
+| `--slider-entity-row-thumb-height` | Slider thumb height                       | `16px`                             |
+| `--slider-entity-row-thumb-width`  | Slider thumb width                        | `16px`                             |
+| `--slider-entity-row-track-size`   | Slider track thickness                    | `var(--ha-slider-track-size, 4px)` |
+| `--slider-entity-row-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                          |
 
 <details><summary>YAML code for screenshot above</summary>
 
