@@ -19,6 +19,7 @@ cards:
           - Default (brightness_pct): {{ state_attr('light.bed_light', 'brightness_pct') }}
           - brightness: {{ state_attr('light.bed_light', 'brightness') }}
           - color_temp: {{state_attr('light.bed_light', 'color_temp')}}
+          - color_temp_kelvin: {{state_attr('light.bed_light', 'color_temp_kelvin')}}
           - hue: {{state_attr('light.bed_light', 'hs_color')[0]}}
           - saturation: {{state_attr('light.bed_light', 'hs_color')[1]}}
           - red: {{state_attr('light.bed_light', 'rgb_color')[0]}}
@@ -49,6 +50,13 @@ cards:
             name: color_temp
             colorize: true
             attribute: color_temp
+          - <<: *light
+            name: color_temp_kelvin
+            attribute: color_temp_kelvin
+          - <<: *light
+            name: color_temp_kelvin
+            colorize: true
+            attribute: color_temp_kelvin
           - <<: *light
             name: color_temp_mired
             attribute: color_temp_mired

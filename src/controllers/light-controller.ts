@@ -15,6 +15,7 @@ export class LightController extends Controller {
     "brightness_pct",
     "brightness",
     "color_temp",
+    "color_temp_kelvin",
     "hue",
     "saturation",
     "red",
@@ -51,6 +52,7 @@ export class LightController extends Controller {
     const attr = this.stateObj.attributes;
     switch (this.attribute) {
       case "color_temp":
+      case "color_temp_kelvin":
         return Math.round(attr.color_temp_kelvin);
       case "white_value":
         return Math.round(attr.white_value);
@@ -98,6 +100,7 @@ export class LightController extends Controller {
   get _min() {
     switch (this.attribute) {
       case "color_temp":
+      case "color_temp_kelvin":
         return this.stateObj
           ? this.stateObj.attributes.min_color_temp_kelvin
           : 0;
@@ -108,6 +111,7 @@ export class LightController extends Controller {
   get _max() {
     switch (this.attribute) {
       case "color_temp":
+      case "color_temp_kelvin":
         return this.stateObj
           ? this.stateObj.attributes.max_color_temp_kelvin
           : 0;
@@ -193,6 +197,7 @@ export class LightController extends Controller {
         attr = "effect";
         break;
       case "color_temp":
+      case "color_temp_kelvin":
         attr = "color_temp_kelvin";
         break;
     }
@@ -220,6 +225,7 @@ export class LightController extends Controller {
       case "brightness":
         return `${this.value}`;
       case "color_temp":
+      case "color_temp_kelvin":
         return `${this.value} K`;
       case "brightness_pct":
       case "saturation":
@@ -272,6 +278,7 @@ export class LightController extends Controller {
           return true;
         return false;
       case "color_temp":
+      case "color_temp_kelvin":
         if (
           "color_temp" in this.stateObj.attributes ||
           "color_temp_kelvin" in this.stateObj.attributes ||
@@ -317,7 +324,10 @@ export class LightController extends Controller {
   get background(): string | undefined {
     if (this.attribute === "hue")
       return "linear-gradient(to right,red,yellow,green,cyan,blue,magenta,red)";
-    if (this.attribute === "color_temp")
+    if (
+      this.attribute === "color_temp" ||
+      this.attribute === "color_temp_kelvin"
+    )
       return "linear-gradient(to left,rgb(166,209,255),rgb(255,255,255),rgb(255,160,0))";
     if (this.attribute === "red")
       return "linear-gradient(to right,rgb(0,0,0),rgb(255,0,0))";

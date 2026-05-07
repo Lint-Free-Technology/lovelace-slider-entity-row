@@ -54,7 +54,8 @@ class SliderEntityRow extends LitElement {
     const styleEl = document.createElement("style");
     styleEl.classList.add("slider-entity-row");
     styleEl.innerHTML = `.container .track::before{background: var(--_inactive-track-color);}
-    .container .track::after{background: var(--_active-track-color);}`;
+    .container .track::after{background: var(--_active-track-color);}
+    span#thumb{box-shadow: var(--slider-entity-row-box-shadow, inherit);}`;
     this._slider.shadowRoot?.appendChild(styleEl);
   }
 
@@ -133,9 +134,9 @@ class SliderEntityRow extends LitElement {
                   (c.value = (
                     this.shadowRoot.querySelector("ha-slider") as any
                   ).value)}
-                class=${this._config.full_row || this._config.grow
-                  ? "full"
-                  : ""}
+                class=${`slider-entity-row${
+                  this._config.full_row || this._config.grow ? " full" : ""
+                }`}
                 ignore-bar-touch
               ></ha-slider>
             `
@@ -191,7 +192,7 @@ class SliderEntityRow extends LitElement {
         gap: 8px !important;
       }
       .state {
-        min-width: 38px;
+        min-width: 45px;
         text-align: end;
       }
       ha-entity-toggle {
@@ -202,6 +203,14 @@ class SliderEntityRow extends LitElement {
         width: 100%;
         min-width: 100px;
         --paper-slider-secondary-color: transparent;
+      }
+      ha-slider.slider-entity-row[size="small"] {
+        --thumb-height: var(--slider-entity-row-thumb-size, var(--slider-entity-row-thumb-height, 16px));
+        --thumb-width: var(--slider-entity-row-thumb-size, var(--slider-entity-row-thumb-width, 16px));
+        --track-size: var(
+          --slider-entity-row-track-size,
+          var(--ha-slider-track-size, 4px)
+        );
       }
       ha-slider:not(.full) {
         max-width: 200px;
