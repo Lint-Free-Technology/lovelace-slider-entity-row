@@ -105,7 +105,7 @@ Currently, the following attribute settings are supported.
 
 - `brightness_pct` - default
 - `brightness`
-- `color_temp`
+- `color_temp` (`color_temp_kelvin` is an alias and behaves the same)
 - `hue`
 - `saturation`
 - `red`
