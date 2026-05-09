@@ -67,13 +67,15 @@ def _ws_call(ha, command: dict[str, Any]) -> dict[str, Any]:
         try:
             result.update(ha._ws_call(command))
         except Exception as exc:  # noqa: BLE001
-            exc_holder.append(exc)
+            exc_holder.append(
+                RuntimeError(f"WebSocket command failed: {command.get('type')} ({exc})")
+            )
 
     thread = threading.Thread(target=_run, daemon=True)
     thread.start()
     thread.join(timeout=30)
     if thread.is_alive():
-        raise TimeoutError(f"Websocket command timed out: {command.get('type')}")
+        raise TimeoutError(f"WebSocket command timed out: {command.get('type')}")
     if exc_holder:
         raise exc_holder[0]
     return result
