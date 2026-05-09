@@ -5,5 +5,5 @@ views:
   - !include lovelace/views/3_attributes.yaml
   - !include lovelace/views/4_width.yaml
   - !include lovelace/views/5_errors.yaml
-  - title: test
+  - title: testcontainer_validation
     cards: []
