@@ -1,48 +1,49 @@
 from __future__ import annotations
 
-import os
-from pathlib import Path
-
 import pytest
+from ha_testcontainer import HATestContainer
 from playwright.sync_api import Page
 
-from ha_testcontainer.visual import HA_SETTLE_MS, PAGE_LOAD_TIMEOUT
+from ha_testcontainer.visual.scenario_runner import (
+    capture_doc_animation,
+    capture_doc_image,
+    clear_scenario,
+    goto_scenario,
+    load_all_doc_image_scenarios,
+    push_scenario,
+    reset_theme,
+    run_interactions,
+    set_theme,
+)
 
-DOC_IMAGES = [
-    {"id": "standard", "path": "0", "output": "docs/source/assets/images/standard.png"},
-    {"id": "domains", "path": "0", "output": "docs/source/assets/images/domains.png"},
-    {"id": "options", "path": "0", "output": "docs/source/assets/images/options.png"},
-]
-SETTLE_WAIT_MS = HA_SETTLE_MS * 2
-
-
-def _write_or_verify(path: Path, image_bytes: bytes) -> None:
-    update = os.environ.get("DOC_IMAGE_UPDATE") == "1"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if update or not path.exists():
-        path.write_bytes(image_bytes)
-        return
-    expected = path.read_bytes()
-    if expected != image_bytes:
-        raise AssertionError(
-            f"Documentation image changed: {path}. "
-            "Re-run with DOC_IMAGE_UPDATE=1 to refresh docs images."
-        )
+_DOC_SCENARIOS = load_all_doc_image_scenarios()
+_DOC_SCENARIO_IDS = [s["id"] for s in _DOC_SCENARIOS]
+_DOC_SCENARIO_MAP = {s["id"]: s for s in _DOC_SCENARIOS}
 
 
-@pytest.mark.parametrize("scenario", DOC_IMAGES, ids=[s["id"] for s in DOC_IMAGES])
+@pytest.mark.parametrize("scenario_id", _DOC_SCENARIO_IDS)
 def test_doc_image(
-    scenario: dict[str, str],
+    scenario_id: str,
+    ha: HATestContainer,
     ha_page: Page,
     ha_url: str,
     ha_lovelace_url_path: str,
 ) -> None:
-    ha_page.goto(
-        f"{ha_url}/{ha_lovelace_url_path}/{scenario['path']}",
-        wait_until="networkidle",
-        timeout=PAGE_LOAD_TIMEOUT,
-    )
-    ha_page.wait_for_timeout(SETTLE_WAIT_MS)
+    scenario = _DOC_SCENARIO_MAP[scenario_id]
+    theme = scenario.get("theme")
 
-    image = ha_page.screenshot(full_page=True)
-    _write_or_verify(Path(scenario["output"]), image)
+    push_scenario(ha, ha_lovelace_url_path, scenario)
+    if theme:
+        set_theme(ha, theme)
+
+    try:
+        run_interactions(ha_page, scenario, ha=ha, key="setup")
+        goto_scenario(ha_page, ha_url, ha_lovelace_url_path, scenario["view_path"])
+        run_interactions(ha_page, scenario, ha=ha)
+        capture_doc_image(ha_page, scenario, ha=ha)
+        capture_doc_animation(ha_page, scenario, ha=ha)
+    finally:
+        run_interactions(ha_page, scenario, ha=ha, key="teardown")
+        if theme:
+            reset_theme(ha)
+        clear_scenario(ha, ha_lovelace_url_path)

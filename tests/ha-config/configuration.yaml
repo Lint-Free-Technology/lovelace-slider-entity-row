@@ -5,7 +5,7 @@ demo:
 lovelace:
   mode: storage
   resource_mode: yaml
-  resources: !include plugins.yaml
+  resources: !include lovelace_resources.yaml
 
 input_number:
   slider:

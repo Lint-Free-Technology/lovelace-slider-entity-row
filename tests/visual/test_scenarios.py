@@ -1,54 +1,46 @@
 from __future__ import annotations
 
-import os
-from pathlib import Path
-
 import pytest
 from playwright.sync_api import Page
 
-from ha_testcontainer.visual import HA_SETTLE_MS, PAGE_LOAD_TIMEOUT
+from ha_testcontainer.visual.scenario_runner import (
+    clear_scenario,
+    goto_scenario,
+    load_all_scenarios,
+    push_scenario,
+    reset_theme,
+    run_assertions,
+    run_interactions,
+    set_theme,
+)
 
-SCENARIOS = [
-    {"id": "options", "path": "0", "name": "options.png"},
-    {"id": "attributes", "path": "1", "name": "attributes.png"},
-    {"id": "width", "path": "2", "name": "width.png"},
-    {"id": "errors", "path": "3", "name": "errors.png"},
-]
-SETTLE_WAIT_MS = HA_SETTLE_MS * 2
-
-
-def _assert_snapshot(path: Path, image_bytes: bytes) -> None:
-    update = os.environ.get("VISUAL_UPDATE") == "1"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if update or not path.exists():
-        path.write_bytes(image_bytes)
-        return
-    expected = path.read_bytes()
-    if expected != image_bytes:
-        raise AssertionError(
-            f"Visual snapshot changed: {path}. "
-            "Re-run with VISUAL_UPDATE=1 to accept the new snapshot."
-        )
+_ALL_SCENARIOS = load_all_scenarios()
+_SCENARIO_IDS = [s["id"] for s in _ALL_SCENARIOS]
+_SCENARIO_MAP = {s["id"]: s for s in _ALL_SCENARIOS}
 
 
-@pytest.mark.parametrize("scenario", SCENARIOS, ids=[s["id"] for s in SCENARIOS])
-def test_view_snapshot(
-    scenario: dict[str, str],
+@pytest.mark.parametrize("scenario_id", _SCENARIO_IDS)
+def test_scenario(
+    scenario_id: str,
+    ha,
     ha_page: Page,
     ha_url: str,
     ha_lovelace_url_path: str,
 ) -> None:
-    ha_page.goto(
-        f"{ha_url}/{ha_lovelace_url_path}/{scenario['path']}",
-        wait_until="networkidle",
-        timeout=PAGE_LOAD_TIMEOUT,
-    )
-    ha_page.wait_for_timeout(SETTLE_WAIT_MS)
-    image = ha_page.screenshot(full_page=True)
+    scenario = _SCENARIO_MAP[scenario_id]
+    theme = scenario.get("theme")
 
-    snapshot_path = (
-        Path(__file__).resolve().parent
-        / "snapshots"
-        / scenario["name"]
-    )
-    _assert_snapshot(snapshot_path, image)
+    push_scenario(ha, ha_lovelace_url_path, scenario)
+    if theme:
+        set_theme(ha, theme)
+
+    try:
+        run_interactions(ha_page, scenario, ha=ha, key="setup")
+        goto_scenario(ha_page, ha_url, ha_lovelace_url_path, scenario["view_path"])
+        run_interactions(ha_page, scenario, ha=ha)
+        run_assertions(ha_page, scenario)
+    finally:
+        run_interactions(ha_page, scenario, ha=ha, key="teardown")
+        if theme:
+            reset_theme(ha)
+        clear_scenario(ha, ha_lovelace_url_path)
