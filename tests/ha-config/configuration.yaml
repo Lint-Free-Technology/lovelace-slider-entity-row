@@ -12,7 +12,7 @@ lovelace:
     lovelace-yaml:
       mode: yaml
       title: yaml
-      filename: tests/ha-config/lovelace.yaml
+      filename: lovelace.yaml
 
 input_number:
   slider:
