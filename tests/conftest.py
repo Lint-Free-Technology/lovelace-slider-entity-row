@@ -59,18 +59,16 @@ def ha_token(ha) -> str:
     return ha.get_token()
 
 
-def _ws_call(ha, command: dict[str, Any]) -> dict[str, Any]:
+def _run_ws_command(ha, command: dict[str, Any]) -> dict[str, Any]:
     """Run an HA websocket command with timeout handling."""
     result: dict[str, Any] = {}
-    exc_holder: list[BaseException] = []
+    exc_holder: list[Exception] = []
 
     def _run() -> None:
         try:
             result.update(ha._ws_call(command))
         except Exception as exc:
-            exc_holder.append(
-                RuntimeError(f"WebSocket command failed: {command.get('type')} ({exc})")
-            )
+            exc_holder.append(exc)
 
     thread = threading.Thread(target=_run, daemon=True)
     thread.start()
@@ -78,7 +76,7 @@ def _ws_call(ha, command: dict[str, Any]) -> dict[str, Any]:
     if thread.is_alive():
         raise TimeoutError(f"WebSocket command timed out: {command.get('type')}")
     if exc_holder:
-        raise exc_holder[0]
+        raise RuntimeError(f"WebSocket command failed: {command.get('type')}") from exc_holder[0]
     return result
 
 
@@ -98,7 +96,7 @@ def _load_dashboard_views() -> list[dict[str, Any]]:
 @pytest.fixture(scope="session")
 def ha_lovelace_url_path(ha) -> str:
     views = _load_dashboard_views()
-    result = _ws_call(
+    result = _run_ws_command(
         ha,
         {
             "id": 1,
