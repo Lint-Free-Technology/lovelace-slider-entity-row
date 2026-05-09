@@ -54,7 +54,7 @@
     {
       "label": "pytest: Visual scenarios",
       "type": "shell",
-      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; pytest tests/visual/test_scenarios.py",
+      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; pytest tests/visual/test_scenarios.py",
       "group": "test",
       "problemMatcher": [],
       "presentation": {
@@ -65,7 +65,7 @@
     {
       "label": "pytest: Visual scenarios (Update)",
       "type": "shell",
-      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; VISUAL_UPDATE=1 pytest tests/visual/test_scenarios.py",
+      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; VISUAL_UPDATE=1 pytest tests/visual/test_scenarios.py",
       "group": "test",
       "problemMatcher": [],
       "presentation": {
@@ -76,7 +76,7 @@
     {
       "label": "pytest: Visual scenario - single",
       "type": "shell",
-      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; pytest tests/visual/test_scenarios.py -k '${input:scenarioId}'",
+      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; pytest tests/visual/test_scenarios.py -k '${input:scenarioId}'",
       "group": "test",
       "problemMatcher": [],
       "presentation": {
@@ -87,7 +87,7 @@
     {
       "label": "pytest: Doc images",
       "type": "shell",
-      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; pytest tests/visual/test_doc_images.py",
+      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; pytest tests/visual/test_doc_images.py",
       "group": "test",
       "problemMatcher": [],
       "presentation": {
@@ -98,7 +98,7 @@
     {
       "label": "pytest: Doc images (Update)",
       "type": "shell",
-      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; DOC_IMAGE_UPDATE=1 pytest tests/visual/test_doc_images.py",
+      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; DOC_IMAGE_UPDATE=1 pytest tests/visual/test_doc_images.py",
       "group": "test",
       "problemMatcher": [],
       "presentation": {

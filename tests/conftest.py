@@ -66,7 +66,7 @@ def _ws_call(ha, command: dict[str, Any]) -> dict[str, Any]:
     def _run() -> None:
         try:
             result.update(ha._ws_call(command))
-        except BaseException as exc:  # noqa: BLE001
+        except Exception as exc:  # noqa: BLE001
             exc_holder.append(exc)
 
     thread = threading.Thread(target=_run, daemon=True)
@@ -85,6 +85,7 @@ def _load_dashboard_views() -> list[dict[str, Any]]:
         data = yaml.safe_load((HA_LOVELACE_VIEWS_DIR / file_name).read_text())
         if not isinstance(data, dict):
             raise RuntimeError(f"Invalid Lovelace view format in {file_name}")
+        # x-anchors are YAML-only helper aliases and not valid Lovelace config keys.
         data.pop("x-anchors", None)
         views.append(data)
     return views
