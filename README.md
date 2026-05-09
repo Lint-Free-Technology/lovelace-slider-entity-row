@@ -108,6 +108,7 @@ The slider exposes the following theme variables:
 | `--slider-entity-row-thumb-width`  | Slider thumb width                        | `var(--slider-entity-row-thumb-size, 16px)`                             |
 | `--slider-entity-row-track-size`   | Slider track thickness                    | `var(--ha-slider-track-size, 4px)` |
 | `--slider-entity-row-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                          |
+| `--slider-entity-row-state-min-width`   | Minimum width of the state/toggle. Adjust to cater for large state values and still have sliders align for multiple rows. | `45px`                          |
 
 ### Attribute
 
