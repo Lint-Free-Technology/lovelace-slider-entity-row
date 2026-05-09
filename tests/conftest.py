@@ -76,7 +76,9 @@ def _run_ws_command(ha, command: dict[str, Any]) -> dict[str, Any]:
     if thread.is_alive():
         raise TimeoutError(f"WebSocket command timed out: {command.get('type')}")
     if exc_holder:
-        raise RuntimeError(f"WebSocket command failed: {command.get('type')}") from exc_holder[0]
+        raise RuntimeError(
+            f"WebSocket command failed: type={command.get('type')}, id={command.get('id')}"
+        ) from exc_holder[0]
     return result
 
 
@@ -86,7 +88,9 @@ def _load_dashboard_views() -> list[dict[str, Any]]:
     for file_name in HA_LOVELACE_VIEW_FILES:
         data = yaml.safe_load((HA_LOVELACE_VIEWS_DIR / file_name).read_text())
         if not isinstance(data, dict):
-            raise RuntimeError(f"Invalid Lovelace view format in {file_name}")
+            raise RuntimeError(
+                f"Invalid Lovelace view format in {file_name}: expected dict, got {type(data).__name__}"
+            )
         # x-anchors are YAML-only helper aliases and not valid Lovelace config keys.
         data.pop("x-anchors", None)
         views.append(data)
@@ -108,5 +112,8 @@ def ha_lovelace_url_path(ha) -> str:
         },
     )
     if not result.get("success"):
-        raise RuntimeError(f"Failed to save Lovelace dashboard config: {result}")
+        error = result.get("error")
+        raise RuntimeError(
+            f"Failed to save Lovelace dashboard config via {result.get('type', 'lovelace/config/save')}: {error or result}"
+        )
     return HA_LOVELACE_URL_PATH
