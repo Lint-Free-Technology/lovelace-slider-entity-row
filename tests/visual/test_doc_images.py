@@ -13,6 +13,7 @@ DOC_IMAGES = [
     {"id": "domains", "path": "0", "output": "docs/source/assets/images/domains.png"},
     {"id": "options", "path": "1", "output": "docs/source/assets/images/options.png"},
 ]
+SETTLE_WAIT_MS = HA_SETTLE_MS * 2
 
 
 def _write_or_verify(path: Path, image_bytes: bytes) -> None:
@@ -36,7 +37,7 @@ def test_doc_image(scenario: dict[str, str], ha_page: Page, ha_url: str) -> None
         wait_until="networkidle",
         timeout=PAGE_LOAD_TIMEOUT,
     )
-    ha_page.wait_for_timeout(HA_SETTLE_MS * 2)
+    ha_page.wait_for_timeout(SETTLE_WAIT_MS)
 
     image = ha_page.screenshot(full_page=True)
     _write_or_verify(Path(scenario["output"]), image)

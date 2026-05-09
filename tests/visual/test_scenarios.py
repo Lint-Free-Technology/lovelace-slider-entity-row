@@ -15,6 +15,7 @@ SCENARIOS = [
     {"id": "width", "path": "3", "name": "width.png"},
     {"id": "errors", "path": "4", "name": "errors.png"},
 ]
+SETTLE_WAIT_MS = HA_SETTLE_MS * 2
 
 
 def _assert_snapshot(path: Path, image_bytes: bytes) -> None:
@@ -38,7 +39,7 @@ def test_view_snapshot(scenario: dict[str, str], ha_page: Page, ha_url: str) -> 
         wait_until="networkidle",
         timeout=PAGE_LOAD_TIMEOUT,
     )
-    ha_page.wait_for_timeout(HA_SETTLE_MS * 2)
+    ha_page.wait_for_timeout(SETTLE_WAIT_MS)
     image = ha_page.screenshot(full_page=True)
 
     snapshot_path = (
