@@ -60,13 +60,14 @@ def ha_token(ha) -> str:
 
 
 def _ws_call(ha, command: dict[str, Any]) -> dict[str, Any]:
+    """Run an HA websocket command with timeout handling."""
     result: dict[str, Any] = {}
     exc_holder: list[BaseException] = []
 
     def _run() -> None:
         try:
             result.update(ha._ws_call(command))
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             exc_holder.append(
                 RuntimeError(f"WebSocket command failed: {command.get('type')} ({exc})")
             )
@@ -82,6 +83,7 @@ def _ws_call(ha, command: dict[str, Any]) -> dict[str, Any]:
 
 
 def _load_dashboard_views() -> list[dict[str, Any]]:
+    """Load static Lovelace view YAML files into dashboard view dictionaries."""
     views: list[dict[str, Any]] = []
     for file_name in HA_LOVELACE_VIEW_FILES:
         data = yaml.safe_load((HA_LOVELACE_VIEWS_DIR / file_name).read_text())
