@@ -1,32 +1,117 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "npm: build",
-        "type": "npm",
-        "script": "build",
-        "problemMatcher": []
-      },
-      {
-        "label": "npm: watch",
-        "type": "npm",
-        "script": "watch",
-        "problemMatcher": [],
-        "presentation": {
-          "panel": "shared",
-          "group": "test"
-        }
-      },
-      {
-        "label": "Run hass",
-        "type": "shell",
-        "command": "sudo container launch",
-        "problemMatcher": [],
-        "presentation": {
-          "panel": "shared",
-          "group": "test"
-        }
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "npm: build",
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "npm: watch",
+      "type": "npm",
+      "script": "watch",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "dedicated",
+        "group": "build"
       }
-    ]
-  }
-  
+    },
+    {
+      "label": "Python: Set up virtual environment",
+      "type": "shell",
+      "command": "python3 -m venv .venv && source .venv/bin/activate && pip install -e '.[test]' && playwright install chromium",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always",
+        "group": "setup"
+      }
+    },
+    {
+      "label": "HA: Start persistent server",
+      "type": "shell",
+      "command": "source .venv/bin/activate && python tests/ha_server.py",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "ha-server",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Starting Home Assistant",
+          "endsPattern": "Home Assistant is ready at"
+        }
+      },
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always",
+        "group": "ha"
+      }
+    },
+    {
+      "label": "pytest: Visual scenarios",
+      "type": "shell",
+      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; pytest tests/visual/test_scenarios.py",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "group": "pytest"
+      }
+    },
+    {
+      "label": "pytest: Visual scenarios (Update)",
+      "type": "shell",
+      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; VISUAL_UPDATE=1 pytest tests/visual/test_scenarios.py",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "group": "pytest"
+      }
+    },
+    {
+      "label": "pytest: Visual scenario - single",
+      "type": "shell",
+      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; pytest tests/visual/test_scenarios.py -k '${input:scenarioId}'",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "group": "pytest"
+      }
+    },
+    {
+      "label": "pytest: Doc images",
+      "type": "shell",
+      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; pytest tests/visual/test_doc_images.py",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "group": "pytest"
+      }
+    },
+    {
+      "label": "pytest: Doc images (Update)",
+      "type": "shell",
+      "command": "source .venv/bin/activate && source .ha_env 2>/dev/null; DOC_IMAGE_UPDATE=1 pytest tests/visual/test_doc_images.py",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "group": "pytest"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "scenarioId",
+      "type": "promptString",
+      "description": "Scenario id or pytest -k expression (e.g. options)"
+    }
+  ]
+}

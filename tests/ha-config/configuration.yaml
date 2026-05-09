@@ -8,11 +8,6 @@ lovelace:
   resources:
     - url: /local/workspace/dist/slider-entity-row.js
       type: module
-  dashboards:
-    lovelace-yaml:
-      mode: yaml
-      title: yaml
-      filename: lovelace.yaml
 
 input_number:
   slider:

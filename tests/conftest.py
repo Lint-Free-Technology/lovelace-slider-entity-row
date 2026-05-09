@@ -2,14 +2,25 @@ from __future__ import annotations
 
 import os
 import shutil
+import threading
 from pathlib import Path
+from typing import Any
 
 import pytest
 from ha_testcontainer import HATestContainer, HAVersion
+import yaml
 
 REPO_ROOT = Path(__file__).parent.parent
 HA_CONFIG_DIR = REPO_ROOT / "tests" / "ha-config"
 DIST_JS = REPO_ROOT / "dist" / "slider-entity-row.js"
+HA_LOVELACE_VIEWS_DIR = HA_CONFIG_DIR / "lovelace" / "views"
+HA_LOVELACE_URL_PATH = "lovelace"
+HA_LOVELACE_VIEW_FILES = (
+    "2_options.yaml",
+    "3_attributes.yaml",
+    "4_width.yaml",
+    "5_errors.yaml",
+)
 
 
 @pytest.fixture(scope="session")
@@ -46,3 +57,53 @@ def ha_url(ha) -> str:
 @pytest.fixture(scope="session")
 def ha_token(ha) -> str:
     return ha.get_token()
+
+
+def _ws_call(ha, command: dict[str, Any]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    exc_holder: list[BaseException] = []
+
+    def _run() -> None:
+        try:
+            result.update(ha._ws_call(command))
+        except BaseException as exc:  # noqa: BLE001
+            exc_holder.append(exc)
+
+    thread = threading.Thread(target=_run, daemon=True)
+    thread.start()
+    thread.join(timeout=30)
+    if thread.is_alive():
+        raise TimeoutError(f"Websocket command timed out: {command.get('type')}")
+    if exc_holder:
+        raise exc_holder[0]
+    return result
+
+
+def _load_dashboard_views() -> list[dict[str, Any]]:
+    views: list[dict[str, Any]] = []
+    for file_name in HA_LOVELACE_VIEW_FILES:
+        data = yaml.safe_load((HA_LOVELACE_VIEWS_DIR / file_name).read_text())
+        if not isinstance(data, dict):
+            raise RuntimeError(f"Invalid Lovelace view format in {file_name}")
+        data.pop("x-anchors", None)
+        views.append(data)
+    return views
+
+
+@pytest.fixture(scope="session")
+def ha_lovelace_url_path(ha) -> str:
+    views = _load_dashboard_views()
+    result = _ws_call(
+        ha,
+        {
+            "id": 1,
+            "type": "lovelace/config/save",
+            "config": {
+                "title": "slider-entity-row",
+                "views": views,
+            },
+        },
+    )
+    if not result.get("success"):
+        raise RuntimeError(f"Failed to save Lovelace dashboard config: {result}")
+    return HA_LOVELACE_URL_PATH

@@ -9,11 +9,10 @@ from playwright.sync_api import Page
 from ha_testcontainer.visual import HA_SETTLE_MS, PAGE_LOAD_TIMEOUT
 
 SCENARIOS = [
-    {"id": "types", "path": "0", "name": "types.png"},
-    {"id": "options", "path": "1", "name": "options.png"},
-    {"id": "attributes", "path": "2", "name": "attributes.png"},
-    {"id": "width", "path": "3", "name": "width.png"},
-    {"id": "errors", "path": "4", "name": "errors.png"},
+    {"id": "options", "path": "0", "name": "options.png"},
+    {"id": "attributes", "path": "1", "name": "attributes.png"},
+    {"id": "width", "path": "2", "name": "width.png"},
+    {"id": "errors", "path": "3", "name": "errors.png"},
 ]
 SETTLE_WAIT_MS = HA_SETTLE_MS * 2
 
@@ -33,9 +32,14 @@ def _assert_snapshot(path: Path, image_bytes: bytes) -> None:
 
 
 @pytest.mark.parametrize("scenario", SCENARIOS, ids=[s["id"] for s in SCENARIOS])
-def test_view_snapshot(scenario: dict[str, str], ha_page: Page, ha_url: str) -> None:
+def test_view_snapshot(
+    scenario: dict[str, str],
+    ha_page: Page,
+    ha_url: str,
+    ha_lovelace_url_path: str,
+) -> None:
     ha_page.goto(
-        f"{ha_url}/lovelace-yaml/{scenario['path']}",
+        f"{ha_url}/{ha_lovelace_url_path}/{scenario['path']}",
         wait_until="networkidle",
         timeout=PAGE_LOAD_TIMEOUT,
     )
