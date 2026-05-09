@@ -22,10 +22,11 @@ def _write_or_verify(path: Path, image_bytes: bytes) -> None:
         path.write_bytes(image_bytes)
         return
     expected = path.read_bytes()
-    assert expected == image_bytes, (
-        f"Documentation image changed: {path}. "
-        "Re-run with DOC_IMAGE_UPDATE=1 to refresh docs images."
-    )
+    if expected != image_bytes:
+        raise AssertionError(
+            f"Documentation image changed: {path}. "
+            "Re-run with DOC_IMAGE_UPDATE=1 to refresh docs images."
+        )
 
 
 @pytest.mark.parametrize("scenario", DOC_IMAGES, ids=[s["id"] for s in DOC_IMAGES])

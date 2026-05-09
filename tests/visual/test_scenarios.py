@@ -24,10 +24,11 @@ def _assert_snapshot(path: Path, image_bytes: bytes) -> None:
         path.write_bytes(image_bytes)
         return
     expected = path.read_bytes()
-    assert expected == image_bytes, (
-        f"Visual snapshot changed: {path}. "
-        "Re-run with VISUAL_UPDATE=1 to accept the new snapshot."
-    )
+    if expected != image_bytes:
+        raise AssertionError(
+            f"Visual snapshot changed: {path}. "
+            "Re-run with VISUAL_UPDATE=1 to accept the new snapshot."
+        )
 
 
 @pytest.mark.parametrize("scenario", SCENARIOS, ids=[s["id"] for s in SCENARIOS])

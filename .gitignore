@@ -3,3 +3,5 @@ dist/
 .venv/
 .pytest_cache/
 .ha_env
+**/__pycache__/
+*.egg-info/
