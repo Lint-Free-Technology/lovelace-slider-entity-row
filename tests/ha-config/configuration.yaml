@@ -5,9 +5,7 @@ demo:
 lovelace:
   mode: storage
   resource_mode: yaml
-  resources:
-    - url: /local/workspace/dist/slider-entity-row.js
-      type: module
+  resources: !include plugins.yaml
 
 input_number:
   slider:

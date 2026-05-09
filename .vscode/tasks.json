@@ -11,11 +11,10 @@
       "label": "npm: watch",
       "type": "npm",
       "script": "watch",
-      "isBackground": true,
       "problemMatcher": [],
       "presentation": {
-        "panel": "dedicated",
-        "group": "build"
+        "panel": "shared",
+        "group": "test"
       }
     },
     {
