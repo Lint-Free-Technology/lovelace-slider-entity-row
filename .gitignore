@@ -1,2 +1,5 @@
 node_modules/
 dist/
+.venv/
+.pytest_cache/
+.ha_env

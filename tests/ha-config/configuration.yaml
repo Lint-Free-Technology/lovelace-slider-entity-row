@@ -4,11 +4,15 @@ demo:
 
 lovelace:
   mode: storage
+  resource_mode: yaml
+  resources:
+    - url: /local/workspace/dist/slider-entity-row.js
+      type: module
   dashboards:
     lovelace-yaml:
       mode: yaml
       title: yaml
-      filename: test/lovelace.yaml
+      filename: tests/ha-config/lovelace.yaml
 
 input_number:
   slider:

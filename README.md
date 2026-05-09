@@ -20,7 +20,7 @@ entities:
     entity: light.kitchen_lights
 ```
 
-![slider-entity-row](https://user-images.githubusercontent.com/1299821/59467898-15b16600-8e31-11e9-9924-53b108572d3a.png)
+![slider-entity-row](docs/source/assets/images/standard.png)
 
 ## Usage
 
@@ -38,7 +38,7 @@ entities:
 
 If you want to control more than one entity with the same slider, use [light group](https://www.home-assistant.io/integrations/light.group/), [cover group](https://www.home-assistant.io/integrations/cover.group/) or a custom made [template entity](https://www.home-assistant.io/integrations/#search/template).
 
-![domains](https://user-images.githubusercontent.com/1299821/59467899-1813c000-8e31-11e9-8abd-34c887a7db2a.png)
+![domains](docs/source/assets/images/domains.png)
 
 Available options:
 
@@ -59,7 +59,7 @@ Available options:
 
 Most general Entities row options like `name`, `icon` and `tap_action` et.al. are also supported.
 
-![options](https://user-images.githubusercontent.com/1299821/59467902-19dd8380-8e31-11e9-9173-97c9b6be3179.png)
+![options](docs/source/assets/images/options.png)
 
 <details><summary>YAML code for screenshot above</summary>
 
