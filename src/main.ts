@@ -56,7 +56,10 @@ class SliderEntityRow extends LitElement {
       return;
     const styleEl = document.createElement("style");
     styleEl.classList.add("slider-entity-row");
-    styleEl.innerHTML = `span#thumb{box-shadow: var(--slider-entity-row-box-shadow, inherit);}`;
+    styleEl.innerHTML = `span#thumb{box-shadow: var(--slider-entity-row-box-shadow, inherit); position: relative;}
+    span#thumb::after{content: ""; border-radius: 50%; position: absolute; width: calc(var(--thumb-width) * 2 + 8px); height: calc(var(--thumb-height) * 2 + 8px); left: calc(-50% - 4px); top: calc(-50% - 4px); cursor: pointer; background: inherit; opacity: 0; pointer-events: none; transition: opacity 180ms ease-in-out;}
+    span#thumb:hover::after{opacity: var(--slider-entity-row-hover-opacity, var(--ha-ripple-hover-opacity, 0.08));}
+    span#thumb:active::after{opacity: var(--slider-entity-row-pressed-opacity, var(--ha-ripple-pressed-opacity, 0.12));}`;
     this._slider.shadowRoot?.appendChild(styleEl);
   }
 

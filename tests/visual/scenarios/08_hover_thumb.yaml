@@ -1,0 +1,32 @@
+id: hover_thumb
+description: Slider thumb hover effect
+view_path: hover-thumb
+preserve_hover: true
+
+setup:
+  - type: ha_service
+    domain: light
+    service: turn_on
+    data:
+      entity_id: light.bed_light
+      brightness: 128
+
+card:
+  type: entities
+  show_header_toggle: false
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hover thumb
+
+interactions:
+  - type: hover
+    root:
+      - slider-entity-row
+      - ha-slider
+    selector: "#thumb"
+    settle_ms: 250
+
+assertions:
+  - type: snapshot
+    name: 08_hover_thumb
