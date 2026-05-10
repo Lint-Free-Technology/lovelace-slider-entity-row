@@ -38,7 +38,7 @@ Open **Run Task...** and use:
 pytest tests/visual/test_scenarios.py
 pytest tests/visual/test_doc_images.py
 # run an individual scenario while iterating locally
-pytest tests/visual/test_scenarios.py -k 01_light_attributes
+pytest tests/visual/test_scenarios.py -k 03_light_attributes
 # update visual scenario baselines
 SNAPSHOT_UPDATE=1 pytest tests/visual/test_scenarios.py
 ```

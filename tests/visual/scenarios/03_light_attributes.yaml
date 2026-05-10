@@ -1,0 +1,52 @@
+id: 03_light_attributes
+description: Light attribute controller coverage
+view_path: light-attributes
+
+setup:
+  - type: ha_service
+    domain: light
+    service: turn_on
+    data:
+      entity_id: light.bed_light
+      brightness: 255
+
+card:
+  type: entities
+  show_header_toggle: false
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: brightness_pct
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: brightness
+      attribute: brightness
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: color_temp_kelvin
+      attribute: color_temp_kelvin
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hue
+      attribute: hue
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: saturation
+      attribute: saturation
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: red
+      attribute: red
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: green
+      attribute: green
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: blue
+      attribute: blue
+
+assertions:
+  - type: slider_rows_have_sliders
+  - type: snapshot
+    name: 03_light_attributes

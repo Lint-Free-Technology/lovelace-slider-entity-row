@@ -1,4 +1,4 @@
-id: 05_controller_types
+id: 07_controller_types
 description: Default options for each supported controller type in test config
 view_path: controller-types
 
@@ -20,4 +20,4 @@ card:
 assertions:
   - type: slider_rows_have_sliders
   - type: snapshot
-    name: 05_controller_types
+    name: 07_controller_types

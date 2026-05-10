@@ -1,6 +1,6 @@
-id: 01_light_attributes
-description: Light attribute controller coverage
-view_path: light-attributes
+id: 06_width_full_row
+description: Width behavior for full_row configuration
+view_path: width-full-row
 
 setup:
   - type: ha_service
@@ -16,37 +16,32 @@ card:
   entities:
     - type: custom:slider-entity-row
       entity: light.bed_light
-      name: brightness_pct
+      name: default
     - type: custom:slider-entity-row
       entity: light.bed_light
-      name: brightness
-      attribute: brightness
+      name: default-toggle
+      toggle: true
     - type: custom:slider-entity-row
       entity: light.bed_light
-      name: color_temp_kelvin
-      attribute: color_temp_kelvin
+      name: full_row
+      full_row: true
     - type: custom:slider-entity-row
       entity: light.bed_light
-      name: hue
-      attribute: hue
+      name: full_row + toggle
+      full_row: true
+      toggle: true
     - type: custom:slider-entity-row
       entity: light.bed_light
-      name: saturation
-      attribute: saturation
+      name: full_row + hide_state
+      full_row: true
+      hide_state: true
     - type: custom:slider-entity-row
       entity: light.bed_light
-      name: red
-      attribute: red
-    - type: custom:slider-entity-row
-      entity: light.bed_light
-      name: green
-      attribute: green
-    - type: custom:slider-entity-row
-      entity: light.bed_light
-      name: blue
-      attribute: blue
+      name: full_row + show_icon
+      full_row: true
+      show_icon: true
 
 assertions:
   - type: slider_rows_have_sliders
   - type: snapshot
-    name: 01_light_attributes
+    name: 06_width_full_row

@@ -1,4 +1,4 @@
-id: 03_errors
+id: 05_errors
 description: Error rendering for missing or invalid entities
 view_path: errors
 
@@ -15,4 +15,4 @@ card:
 
 assertions:
   - type: snapshot
-    name: 03_errors
+    name: 05_errors

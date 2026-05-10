@@ -1,4 +1,4 @@
-id: 02_cover_attributes
+id: 04_cover_attributes
 description: Cover attribute controller coverage
 view_path: cover-attributes
 
@@ -17,4 +17,4 @@ card:
 assertions:
   - type: slider_rows_have_sliders
   - type: snapshot
-    name: 02_cover_attributes
+    name: 04_cover_attributes
