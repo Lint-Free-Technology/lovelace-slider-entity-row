@@ -19,6 +19,39 @@ _SCENARIO_IDS = [s["id"] for s in _ALL_SCENARIOS]
 _SCENARIO_MAP = {s["id"]: s for s in _ALL_SCENARIOS}
 
 
+def _wait_for_slider_scenario_content(page: Page) -> None:
+    """Wait until the rendered Lovelace view contains entities cards and slider rows."""
+    page.wait_for_function(
+        """
+        () => {
+          const collectAll = (selector) => {
+            const out = new Set();
+            const visit = (root) => {
+              if (!root || !root.querySelectorAll) {
+                return;
+              }
+              for (const el of root.querySelectorAll(selector)) {
+                out.add(el);
+              }
+              const children = root.children ? Array.from(root.children) : [];
+              for (const child of children) {
+                if (child.shadowRoot) {
+                  visit(child.shadowRoot);
+                }
+                visit(child);
+              }
+            };
+            visit(document);
+            return out.size;
+          };
+
+          return collectAll('hui-entities-card') > 0 && collectAll('slider-entity-row') > 0;
+        }
+        """,
+        timeout=20_000,
+    )
+
+
 def _assert_slider_rows_have_sliders(page: Page) -> None:
     """Validate slider rows render in the expected HA row/slider structure.
 
@@ -72,6 +105,7 @@ def _assert_slider_rows_have_sliders(page: Page) -> None:
 
           const genericRows = collectAll('hui-generic-entity-row');
           const entitiesCards = collectAll('hui-entities-card');
+          const sliderRows = collectAll('slider-entity-row');
           const countDeep = (root, selector) => {
             if (!root || !root.querySelectorAll) {
               return 0;
@@ -112,6 +146,8 @@ def _assert_slider_rows_have_sliders(page: Page) -> None:
 
           return {
             genericRows: genericRows.length,
+            entitiesCards: entitiesCards.length,
+            sliderRows: sliderRows.length,
             multiRowCards,
             rowsChecked,
             rowsMissingSlider,
@@ -122,6 +158,8 @@ def _assert_slider_rows_have_sliders(page: Page) -> None:
 
     error = dom_summary.get("error")
     assert error is None, error
+    assert dom_summary["entitiesCards"] > 0, "Expected rendered hui-entities-card elements"
+    assert dom_summary["sliderRows"] > 0, "Expected rendered slider-entity-row elements"
     assert dom_summary["genericRows"] > 0, "Expected rendered hui-generic-entity-row elements"
     assert dom_summary["multiRowCards"] > 0, "Expected at least one entities card with multiple generic rows"
     assert dom_summary["rowsChecked"] > 0, "Expected to check at least one generic row for slider rendering"
@@ -150,6 +188,7 @@ def test_scenario(
         goto_scenario(ha_page, ha_url, ha_lovelace_url_path, scenario["view_path"])
         run_interactions(ha_page, scenario, ha=ha)
         if scenario_id != "04_errors":
+            _wait_for_slider_scenario_content(ha_page)
             _assert_slider_rows_have_sliders(ha_page)
         run_assertions(ha_page, scenario)
     finally:
