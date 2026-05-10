@@ -40,17 +40,6 @@ def test_doc_image(
         run_interactions(ha_page, scenario, ha=ha, key="setup")
         goto_scenario(ha_page, ha_url, ha_lovelace_url_path, scenario["view_path"])
         run_interactions(ha_page, scenario, ha=ha)
-        if not scenario.get("preserve_hover"):
-            ha_page.evaluate(
-                """
-                () => {
-                  document.documentElement.style.setProperty("--slider-entity-row-hover-opacity", "0");
-                  document.documentElement.style.setProperty("--slider-entity-row-pressed-opacity", "0");
-                }
-                """
-            )
-            ha_page.mouse.move(0, 0)
-            ha_page.wait_for_timeout(250)
         capture_doc_image(ha_page, scenario, ha=ha)
         capture_doc_animation(ha_page, scenario, ha=ha)
     finally:

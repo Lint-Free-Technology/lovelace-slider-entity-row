@@ -1,7 +1,6 @@
 id: hover_thumb
 description: Slider thumb hover effect
 view_path: hover-thumb
-preserve_hover: true
 
 setup:
   - type: ha_service

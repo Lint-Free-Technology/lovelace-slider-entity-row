@@ -49,44 +49,6 @@ class SliderEntityRow extends LitElement {
     await this.resized();
   }
 
-  async updated() {
-    if (!this._slider) return;
-    await this._slider.updateComplete;
-    if (this._slider.shadowRoot.querySelector("style.slider-entity-row"))
-      return;
-    const styleEl = document.createElement("style");
-    styleEl.classList.add("slider-entity-row");
-    const thumbHaloOffset = "4px";
-    const thumbHaloDiameterOffset = `calc(${thumbHaloOffset} * 2)`;
-    styleEl.innerHTML = `
-      span#thumb {
-        box-shadow: var(--slider-entity-row-box-shadow, inherit);
-        position: relative;
-      }
-      span#thumb::after {
-        content: "";
-        border-radius: 50%;
-        position: absolute;
-        width: calc(var(--thumb-width) * 2 + ${thumbHaloDiameterOffset});
-        height: calc(var(--thumb-height) * 2 + ${thumbHaloDiameterOffset});
-        left: calc(-50% - ${thumbHaloOffset});
-        top: calc(-50% - ${thumbHaloOffset});
-        cursor: pointer;
-        background: inherit;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 180ms ease-in-out;
-      }
-      span#thumb:hover::after {
-        opacity: var(--slider-entity-row-hover-opacity, var(--ha-ripple-hover-opacity, 0.08));
-      }
-      span#thumb:active::after {
-        opacity: var(--slider-entity-row-pressed-opacity, var(--ha-ripple-pressed-opacity, 0.12));
-      }
-    `;
-    this._slider.shadowRoot?.appendChild(styleEl);
-  }
-
   async connectedCallback() {
     super.connectedCallback();
     await this.resized();
@@ -232,6 +194,31 @@ class SliderEntityRow extends LitElement {
         width: 100%;
         min-width: 100px;
         --paper-slider-secondary-color: transparent;
+      }
+      ha-slider.slider-entity-row::part(thumb) {
+        --_slider-entity-row-box-shadow: var(--slider-entity-row-box-shadow, 0 0 #0000);
+        box-shadow: var(--_slider-entity-row-box-shadow);
+        transition: box-shadow 180ms ease-in-out;
+      }
+      ha-slider.slider-entity-row::part(thumb):hover {
+        box-shadow:
+          var(--_slider-entity-row-box-shadow),
+          0 0 0 calc(max(var(--thumb-width), var(--thumb-height)) / 2 + 4px)
+            rgb(
+              from var(--ha-slider-thumb-color, var(--primary-color))
+              r g b /
+              var(--slider-entity-row-hover-opacity, var(--ha-ripple-hover-opacity, 0.08))
+            );
+      }
+      ha-slider.slider-entity-row::part(thumb):active {
+        box-shadow:
+          var(--_slider-entity-row-box-shadow),
+          0 0 0 calc(max(var(--thumb-width), var(--thumb-height)) / 2 + 4px)
+            rgb(
+              from var(--ha-slider-thumb-color, var(--primary-color))
+              r g b /
+              var(--slider-entity-row-pressed-opacity, var(--ha-ripple-pressed-opacity, 0.12))
+            );
       }
       ha-slider.slider-entity-row[size="small"] {
         --thumb-height: var(--slider-entity-row-thumb-size, var(--slider-entity-row-thumb-height, 16px));
