@@ -66,6 +66,7 @@ Most general Entities row options like `name`, `icon` and `tap_action` et.al. ar
 ```yaml
 type: entities
 title: Options
+show_header_toggle: false
 entities:
   - type: custom:slider-entity-row
     entity: light.bed_light
@@ -78,6 +79,11 @@ entities:
     entity: light.bed_light
     name: hide_state
     hide_state: true
+  - type: custom:slider-entity-row
+    entity: light.bed_light
+    name: hide_state_no_grow
+    hide_state: true
+    grow: false
   - type: custom:slider-entity-row
     entity: light.ceiling_lights
     name: hide_when_off
