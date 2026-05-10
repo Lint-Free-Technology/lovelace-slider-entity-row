@@ -19,7 +19,7 @@ card:
       name: default
     - type: custom:slider-entity-row
       entity: light.bed_light
-      name: default-toggle
+      name: default_toggle
       toggle: true
     - type: custom:slider-entity-row
       entity: light.bed_light
