@@ -47,6 +47,7 @@ Available options:
 | `min`           | number         | Minimum value of slider                                                                                                                   |          |
 | `max`           | number         | Maximum value of slider                                                                                                                   |          |
 | `step`          | number         | Step size of slider selection                                                                                                             |          |
+| `tooltip_distance` | number      | Distance in pixels of slider tooltip away from thumb                  | 20        |
 | `toggle`        | `true`/`false` | Show a toggle or mute button if possible                                                                                                  | `false`  |
 | `hide_state`    | `true`/`false` | `true`: Do not display the current state <br>`false`: Always display current state - even when the card is too narrow for it to be usable | none     |
 | `hide_when_off` | `true`/`false` | `true`: Hide slider when state is off <br>`false`: Always display slider                                                                  | `false`  |
@@ -120,6 +121,7 @@ The slider exposes the following theme variables:
 | `--slider-entity-row-track-size`   | Slider track thickness                    | `var(--ha-slider-track-size, 4px)` |
 | `--slider-entity-row-thumb-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                          |
 | `--slider-entity-row-state-min-width`   | Minimum width of the state/toggle. Adjust to cater for large state values and still have sliders align for multiple rows. | `45px`                          |
+
 
 When `colorize: true` is enabled, the row applies inline slider colors for supported attributes, which take precedence over these theme variables.
 
