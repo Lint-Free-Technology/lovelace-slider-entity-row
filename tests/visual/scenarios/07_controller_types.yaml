@@ -1,0 +1,35 @@
+id: controller_types
+description: Default options for each supported controller type in test config
+view_path: controller-types
+
+card:
+  type: entities
+  show_header_toggle: false
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+    - type: custom:slider-entity-row
+      entity: media_player.bedroom
+    - type: custom:slider-entity-row
+      entity: climate.hvac
+    - type: custom:slider-entity-row
+      entity: water_heater.demo_water_heater
+    - type: custom:slider-entity-row
+      entity: cover.living_room_window
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+    - type: custom:slider-entity-row
+      entity: input_number.slider
+    - type: custom:slider-entity-row
+      entity: input_select.select
+    - type: custom:slider-entity-row
+      entity: number.temperature_setting
+    - type: custom:slider-entity-row
+      entity: humidifier.humidifier
+    - type: custom:slider-entity-row
+      entity: timer.demo_timer
+
+assertions:
+  - type: slider_rows_have_sliders
+  - type: snapshot
+    name: 07_controller_types

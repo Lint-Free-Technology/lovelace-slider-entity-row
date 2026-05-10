@@ -4,11 +4,8 @@ demo:
 
 lovelace:
   mode: storage
-  dashboards:
-    lovelace-yaml:
-      mode: yaml
-      title: yaml
-      filename: test/lovelace.yaml
+  resource_mode: yaml
+  resources: !include lovelace_resources.yaml
 
 input_number:
   slider:
@@ -24,3 +21,11 @@ input_select:
       - A
       - B
       - C
+
+timer:
+  demo_timer:
+    duration: '00:10:00'
+    name: Demo timer
+
+water_heater:
+  platform: demo

@@ -1,0 +1,84 @@
+id: options_entity_on
+description: Test different options of slider-entity-row with light.bed_light ON
+view_path: options-entity-on
+
+setup:
+  - type: ha_service
+    domain: light
+    service: turn_on
+    data:
+      entity_id: light.bed_light
+      brightness: 255
+
+card:
+  type: entities
+  show_header_toggle: false
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: default
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: grow
+      grow: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: toggle
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hide_state
+      hide_state: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hide_state_grow
+      hide_state: true
+      grow: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hide_when_off
+      hide_when_off: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hide_when_off + hide_state
+      hide_when_off: true
+      hide_state: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hide_when_off + hide_state + grow
+      hide_when_off: true
+      hide_state: true
+      grow: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hide_when_off + toggle
+      hide_when_off: true
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      full_row: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      full_row: true
+      hide_when_off: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      full_row: true
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      full_row: true
+      hide_state: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      full_row: true
+      show_icon: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: rtl
+      dir: rtl
+
+assertions:
+- type: slider_rows_have_sliders
+- type: snapshot
+  name: 02_options_entity_on
