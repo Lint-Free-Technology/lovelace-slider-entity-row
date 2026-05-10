@@ -223,6 +223,31 @@ class SliderEntityRow extends LitElement {
       ha-slider:not(.full) {
         max-width: 200px;
       }
+      ha-slider:not(.full)[size="small"] {
+        max-width: 150px;
+      }
+      ha-slider.slider-entity-row::part(thumb)::before {
+          content: "";
+          border-radius: 50%;
+          position: absolute;
+          width: calc(var(--thumb-width) * 2 + 8px);
+          height: calc(var(--thumb-height) * 2 + 8px);
+          background-color: var(--ha-slider-thumb-color);
+          left: calc(-50% - 4px);
+          top: calc(-50% - 4px);
+          z-index: -1;
+          opacity: 0;
+      }
+      ha-slider.slider-entity-row::part(thumb):hover,
+      ha-slider.slider-entity-row::part(thumb):active {
+          overflow: visible;
+      }
+      ha-slider.slider-entity-row::part(thumb):hover::before {
+          opacity: var(--slider-entity-row-thumb-hover-opacity, var(--ha-ripple-hover-opacity, 0.08));
+      }
+      ha-slider.slider-entity-row::part(thumb):active::before {
+          opacity: var(--slider-entity-row-thumb-pressed-opacity, var(--ha-ripple-pressed-opacity, 0.12));
+      }
     `;
   }
 }
