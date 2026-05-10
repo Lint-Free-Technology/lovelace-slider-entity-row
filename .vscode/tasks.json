@@ -64,7 +64,7 @@
     {
       "label": "pytest: Visual scenarios (Update)",
       "type": "shell",
-      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; VISUAL_UPDATE=1 pytest tests/visual/test_scenarios.py",
+      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; SNAPSHOT_UPDATE=1 pytest tests/visual/test_scenarios.py",
       "group": "test",
       "problemMatcher": [],
       "presentation": {

@@ -18,13 +18,29 @@ pip install -e '.[test]'
 playwright install --with-deps chromium
 ```
 
-## Run tests
+## Setup and run tests (VS Code tasks or CLI)
+
+### VS Code tasks
+
+Open **Run Task...** and use:
+
+- `Python: Set up virtual environment`
+- `HA: Start persistent server` (optional when iterating)
+- `pytest: Visual scenarios`
+- `pytest: Visual scenarios (Update)`
+- `pytest: Visual scenario - single`
+- `pytest: Doc images`
+- `pytest: Doc images (Update)`
+
+### CLI
 
 ```bash
 pytest tests/visual/test_scenarios.py
 pytest tests/visual/test_doc_images.py
 # run an individual scenario while iterating locally
 pytest tests/visual/test_scenarios.py -k 01_options
+# update visual scenario baselines
+SNAPSHOT_UPDATE=1 pytest tests/visual/test_scenarios.py
 ```
 
 ## Update generated documentation images

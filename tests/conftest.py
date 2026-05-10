@@ -15,12 +15,6 @@ _sr.SCENARIOS_DIR = REPO_ROOT / "tests" / "visual" / "scenarios"
 _sr.SNAPSHOTS_DIR = REPO_ROOT / "tests" / "visual" / "snapshots"
 _sr.REPO_ROOT = REPO_ROOT
 _sr.DOCS_SCENARIOS_DIR = _sr.REPO_ROOT / "docs" / "scenarios"
-_TRUTHY_ENV_VALUES = {"1", "true", "yes", "on"}
-
-# Keep backward compatibility with existing local scripts/docs that still set
-# VISUAL_UPDATE, while ha-testcontainer snapshot assertions use SNAPSHOT_UPDATE.
-if os.environ.get("VISUAL_UPDATE", "").strip().lower() in _TRUTHY_ENV_VALUES:
-    os.environ["SNAPSHOT_UPDATE"] = "1"
 
 # Ensure snapshot assertions always read/write baselines in this repository.
 # conftest is imported before tests are collected, so this override is active for test runs.
