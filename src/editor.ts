@@ -8,7 +8,10 @@ class SliderEntityRowEditor extends LitElement {
   @state() _config?: ControllerConfig;
 
   setConfig(config) {
-    this._config = config;
+    this._config = {
+      grow: true,
+      ...config,
+    };
   }
 
   _schema(selected_domain?) {
@@ -66,6 +69,7 @@ class SliderEntityRowEditor extends LitElement {
           { name: "toggle", selector: { boolean: {} } },
           { name: "hide_state", selector: { boolean: {} } },
           { name: "hide_when_off", selector: { boolean: {} } },
+          { name: "grow", selector: { boolean: {} } },
           { name: "full_row", selector: { boolean: {} } },
           { name: "show_icon", selector: { boolean: {} } },
         ],
