@@ -17,7 +17,8 @@ _sr.REPO_ROOT = REPO_ROOT
 _sr.DOCS_SCENARIOS_DIR = _sr.REPO_ROOT / "docs" / "scenarios"
 _TRUTHY_ENV_VALUES = {"1", "true", "yes", "on"}
 
-# Keep backward-compatible update flag naming used in local docs/scripts.
+# Keep backward compatibility with existing local scripts/docs that still set
+# VISUAL_UPDATE, while ha-testcontainer snapshot assertions use SNAPSHOT_UPDATE.
 if os.environ.get("VISUAL_UPDATE", "").strip().lower() in _TRUTHY_ENV_VALUES:
     os.environ.setdefault("SNAPSHOT_UPDATE", "1")
 
