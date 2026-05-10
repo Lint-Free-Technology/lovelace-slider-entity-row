@@ -22,9 +22,9 @@ _SCENARIO_MAP = {s["id"]: s for s in _ALL_SCENARIOS}
 def _assert_slider_rows_have_sliders(page: Page) -> None:
     """Validate slider rows render in the expected HA row/slider structure.
 
-    Checks that the current scenario view contains `hui-generic-entity-row` rows,
-    renders `slider-entity-row` elements, and that each rendered slider row has
-    at least one `ha-slider` in its shadow subtree.
+    Checks that the current scenario view contains `hui-generic-entity-row` rows.
+    For every entities card that renders more than one generic row, verifies each
+    row includes an `ha-slider`.
     """
     dom_summary = page.evaluate(
         """
@@ -70,28 +70,39 @@ def _assert_slider_rows_have_sliders(page: Page) -> None:
           };
 
           const genericRows = collectAll('hui-generic-entity-row');
-          const sliderRows = collectAll('slider-entity-row');
-          let sliderRowsWithoutSlider = 0;
+          const entitiesCards = collectAll('hui-entities-card');
+          let multiRowCards = 0;
+          let rowsChecked = 0;
+          let rowsMissingSlider = 0;
 
-          for (const row of sliderRows) {
-            if (!hasDeep(row.shadowRoot, 'ha-slider')) {
-              sliderRowsWithoutSlider += 1;
+          for (const card of entitiesCards) {
+            const rows = Array.from(card.querySelectorAll('hui-generic-entity-row'));
+            if (rows.length > 1) {
+              multiRowCards += 1;
+              for (const row of rows) {
+                rowsChecked += 1;
+                if (!hasDeep(row, 'ha-slider') && !hasDeep(row.shadowRoot, 'ha-slider')) {
+                  rowsMissingSlider += 1;
+                }
+              }
             }
           }
 
           return {
             genericRows: genericRows.length,
-            sliderRows: sliderRows.length,
-            sliderRowsWithoutSlider,
+            multiRowCards,
+            rowsChecked,
+            rowsMissingSlider,
           };
         }
         """
     )
 
     assert dom_summary["genericRows"] > 0, "Expected rendered hui-generic-entity-row elements"
-    assert dom_summary["sliderRows"] > 0, "Expected rendered slider-entity-row elements"
-    assert dom_summary["sliderRowsWithoutSlider"] == 0, (
-        "Expected every rendered slider-entity-row element to contain ha-slider"
+    assert dom_summary["multiRowCards"] > 0, "Expected at least one entities card with multiple generic rows"
+    assert dom_summary["rowsChecked"] > 0, "Expected to check at least one generic row for slider rendering"
+    assert dom_summary["rowsMissingSlider"] == 0, (
+        "Expected each checked hui-generic-entity-row to contain ha-slider"
     )
 
 
@@ -114,7 +125,7 @@ def test_scenario(
         run_interactions(ha_page, scenario, ha=ha, key="setup")
         goto_scenario(ha_page, ha_url, ha_lovelace_url_path, scenario["view_path"])
         run_interactions(ha_page, scenario, ha=ha)
-        if scenario_id == "03_width":
+        if scenario_id != "04_errors":
             _assert_slider_rows_have_sliders(ha_page)
         run_assertions(ha_page, scenario)
     finally:
