@@ -1,0 +1,31 @@
+id: doc_readme_theme
+description: README theme example screenshot
+view_path: readme-theme
+theme: slider_entity_row_example
+
+dashboard:
+  title: slider-entity-row
+  views:
+    - path: readme-theme
+      title: README Theme
+      cards:
+        - type: entities
+          title: Theme example
+          show_header_toggle: false
+          entities:
+            - type: custom:slider-entity-row
+              entity: light.bed_light
+              name: Accent light
+              toggle: true
+            - type: custom:slider-entity-row
+              entity: climate.hvac
+              name: Climate
+            - type: custom:slider-entity-row
+              entity: media_player.bedroom
+              name: Media player
+              toggle: true
+doc_image:
+  output: docs/source/assets/images/04_theme.png
+  root: hui-entities-card
+  padding: 16
+  threshold: 0.02
