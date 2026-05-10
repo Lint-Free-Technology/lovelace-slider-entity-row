@@ -13,16 +13,12 @@ dashboard:
           \ pre-wrap;\n  }\n"
         content: "## Options\n\n- default\n- toggle\n- hide_state\n- hide_when_off\n\
           - hide_when_off + toggle\n- full_row\n- full_row + hide_when_off\n- full_row\
-          \ + toggle\n- full_row + hide_state\n\n```\n- &default\n  type: custom:slider-entity-row\n\
-          \  entity: light.bed_light\n- <<: *default\n  name: toggle\n  toggle: true\n\
-          - <<: *default\n  name: hide_state\n  hide_state: true\n- <<: *default\n\
-          \  name: hide_when_off\n  hide_when_off: true\n- <<: *default\n  name: hide_when_off\
-          \ + hide_state\n  hide_when_off: true\n- <<: *default\n  name: hide_when_off\
-          \ + toggle\n  hide_when_off: true\n  toggle: true\n- <<: *default\n  name:\
-          \ full_row\n  full_row: true\n- <<: *default\n  full_row: true\n  hide_when_off:\
-          \ true\n- <<: *default\n  full_row: true\n  toggle: true\n- <<: *default\n\
-          \  full_row: true\n  hide_state: true\n- <<: *default\n  full_row: true\n\
-          \  show_icon: true\n- <<: *default\n  name: rtl\n  dir: rtl\n```\n"
+          \ + toggle\n- full_row + hide_state\n\n```\n- type: custom:slider-entity-row\n\
+          \  entity: light.bed_light\n- type: custom:slider-entity-row\n  entity:\
+          \ light.bed_light\n  name: toggle\n  toggle: true\n- type: custom:slider-entity-row\n\
+          \  entity: light.bed_light\n  name: hide_state\n  hide_state: true\n- type:\
+          \ custom:slider-entity-row\n  entity: light.bed_light\n  name: full_row\n\
+          \  full_row: true\n```\n"
       - type: entities
         show_header_toggle: false
         entities:

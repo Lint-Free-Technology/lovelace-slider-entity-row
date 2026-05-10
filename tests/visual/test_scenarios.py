@@ -20,6 +20,12 @@ _SCENARIO_MAP = {s["id"]: s for s in _ALL_SCENARIOS}
 
 
 def _assert_slider_rows_have_sliders(page: Page) -> None:
+    """Validate slider rows render in the expected HA row/slider structure.
+
+    Checks that the current scenario view contains `hui-generic-entity-row` rows,
+    renders `slider-entity-row` elements, and that each rendered slider row has
+    at least one `ha-slider` in its shadow subtree.
+    """
     dom_summary = page.evaluate(
         """
         () => {
