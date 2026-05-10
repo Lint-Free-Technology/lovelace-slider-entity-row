@@ -109,7 +109,7 @@ The slider exposes the following theme variables:
 
 | Variable                          | Description                               | Default                                      |
 | --------------------------------- | ----------------------------------------- | -------------------------------------------- |
-| `--slider-entity-row-color` | Slider color used for both track and thumb | Home Assistant slider defaults |
+| `--slider-entity-row-color` | Slider color used for both track and thumb | unset (track falls back to `--_inactive-track-color`/`--_active-track-color`, thumb keeps HA default) |
 | `--slider-entity-row-track-color` | Slider track color override | `var(--slider-entity-row-color)` |
 | `--slider-entity-row-thumb-color` | Slider thumb color override | `var(--slider-entity-row-color)` |
 | `--slider-entity-row-thumb-size` | Slider thumb size                           | unset                              |
