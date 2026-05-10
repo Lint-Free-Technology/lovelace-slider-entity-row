@@ -108,17 +108,11 @@ class SliderEntityRow extends LitElement {
               ${this._config.colorize && c.background
                 ? html`
                     <style>
-                      ha-slider::part(track) {
+                      ha-slider.slider-entity-row.colorize::part(track) {
                         background: ${c.background};
                       }
-                      ha-slider::part(indicator) {
+                      ha-slider.slider-entity-row.colorize::part(indicator) {
                         background: transparent;
-                      }
-                      ha-slider {
-                        --paper-slider-container-color: ${c.background};
-                        --_inactive-track-color: ${c.background};
-                        --_active-track-color: ${c.background};
-                        --paper-progress-active-color: transparent;
                       }
                     </style>
                   `
@@ -136,8 +130,10 @@ class SliderEntityRow extends LitElement {
                     this.shadowRoot.querySelector("ha-slider") as any
                   ).value)}
                 class=${`slider-entity-row${
-                  this._config.full_row || this._config.grow ? " full" : ""
-                }`}
+                    this._config.full_row || this._config.grow ? " full" : ""
+                  }${
+                    this._config.colorize ? " colorize" : ""}`
+                  }
                 ignore-bar-touch
               ></ha-slider>
             `
@@ -209,12 +205,6 @@ class SliderEntityRow extends LitElement {
       ha-slider.slider-entity-row[size="small"] {
         --thumb-height: var(--slider-entity-row-thumb-size, var(--slider-entity-row-thumb-height, 16px));
         --thumb-width: var(--slider-entity-row-thumb-size, var(--slider-entity-row-thumb-width, 16px));
-        --ha-slider-track-color: var(--slider-entity-row-track-color, var(--disabled-color));
-        --ha-slider-indicator-color: var(--slider-entity-row-indicator-color, var(--primary-color));
-        --ha-slider-thumb-color: var(
-          --slider-entity-row-thumb-color,
-          var(--slider-entity-row-indicator-color, var(--primary-color))
-        );
         --track-size: var(
           --slider-entity-row-track-size,
           var(--ha-slider-track-size, 4px)
@@ -223,13 +213,22 @@ class SliderEntityRow extends LitElement {
       ha-slider:not(.full) {
         max-width: 200px;
       }
+      ha-slider.slider-entity-row::part(track) {
+        background: var(--slider-entity-row-track-color, var(--ha-slider-track-color, var(--disabled-color)));
+      }
+      ha-slider.slider-entity-row::part(indicator) {
+        background: var(--slider-entity-row-indicator-color, var(--ha-slider-indicator-color, var(--primary-color)));
+      }
+      ha-slider.slider-entity-row::part(thumb) {
+        background: var(--slider-entity-row-thumb-color, var(--slider-entity-row-indicator-color, var(--ha-slider-thumb-color, var(--primary-color))));
+      }
       ha-slider.slider-entity-row::part(thumb)::before {
           content: "";
           border-radius: 50%;
           position: absolute;
           width: calc(var(--thumb-width) * 2 + 8px);
           height: calc(var(--thumb-height) * 2 + 8px);
-          background-color: var(--ha-slider-thumb-color);
+          background-color: var(--slider-entity-row-thumb-color, var(--slider-entity-row-indicator-color, var(--ha-slider-thumb-color, var(--primary-color))));
           left: calc(-50% - 4px);
           top: calc(-50% - 4px);
           z-index: -1;
