@@ -23,6 +23,8 @@ playwright install --with-deps chromium
 ```bash
 pytest tests/visual/test_scenarios.py
 pytest tests/visual/test_doc_images.py
+# run an individual scenario while iterating locally
+pytest tests/visual/test_scenarios.py -k 01_options
 ```
 
 ## Update generated documentation images
@@ -30,3 +32,5 @@ pytest tests/visual/test_doc_images.py
 ```bash
 DOC_IMAGE_UPDATE=1 pytest tests/visual/test_doc_images.py
 ```
+
+Documentation-only image scenarios live in `docs/scenarios/*.yaml`.
