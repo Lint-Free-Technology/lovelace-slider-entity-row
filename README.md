@@ -54,7 +54,7 @@ Available options:
 | `full_row`      | `true`/`false` | Hide the icon and name and stretch slider to full width                                                                                   | `false`  |
 | `show_icon`     | `true`/`false` | Show an icon when `full_row` is true. This icon is NOT clickable                                                                          | `false`  |
 | `attribute`     | (see below)    | Which attribute the slider should control                                                                                                 |          |
-| `colorize`      | `true`/`false` | Colorize the bar (only for some attributes)                                                                                               | `false`  |
+| `colorize`      | `true`/`false` | Colorize the bar (only for some attributes). This uses inline styles and overrides slider theme color variables while enabled.            | `false`  |
 | `dir`           | `ltr`/`rtl`    | Use this to override your languages Right-To-Left or Left-To-Right setting                                                                | language |
 
 Most general Entities row options like `name`, `icon` and `tap_action` et.al. are also supported.
@@ -109,15 +109,17 @@ The slider exposes the following theme variables:
 
 | Variable                          | Description                               | Default                                      |
 | --------------------------------- | ----------------------------------------- | -------------------------------------------- |
-| `--slider-entity-row-color` | Shared color fallback for track and thumb | unset (track falls back to `--_inactive-track-color`/`--_active-track-color`; thumb background only applies when a slider color variable is set) |
-| `--slider-entity-row-track-color` | Slider track color override | unset (falls back to `--slider-entity-row-color` when set) |
-| `--slider-entity-row-thumb-color` | Slider thumb color override | unset (falls back to `--slider-entity-row-color` when set) |
+| `--slider-entity-row-track-color` | Slider base track color | `var(--disabled-color)` |
+| `--slider-entity-row-indicator-color` | Slider active indicator color | `var(--primary-color)` |
+| `--slider-entity-row-thumb-color` | Slider thumb color | `var(--slider-entity-row-indicator-color)` |
 | `--slider-entity-row-thumb-size` | Slider thumb size                           | unset                              |
 | `--slider-entity-row-thumb-height` | Slider thumb height                       | `var(--slider-entity-row-thumb-size, 16px)`                             |
 | `--slider-entity-row-thumb-width`  | Slider thumb width                        | `var(--slider-entity-row-thumb-size, 16px)`                             |
 | `--slider-entity-row-track-size`   | Slider track thickness                    | `var(--ha-slider-track-size, 4px)` |
 | `--slider-entity-row-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                          |
 | `--slider-entity-row-state-min-width`   | Minimum width of the state/toggle. Adjust to cater for large state values and still have sliders align for multiple rows. | `45px`                          |
+
+When `colorize: true` is enabled, the row applies inline slider colors for supported attributes, which take precedence over these theme variables.
 
 ### Attribute
 

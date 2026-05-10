@@ -56,9 +56,7 @@ class SliderEntityRow extends LitElement {
       return;
     const styleEl = document.createElement("style");
     styleEl.classList.add("slider-entity-row");
-    styleEl.innerHTML = `.container .track::before{background: var(--slider-entity-row-track-color, var(--slider-entity-row-color, var(--_inactive-track-color)));}
-    .container .track::after{background: var(--slider-entity-row-track-color, var(--slider-entity-row-color, var(--_active-track-color)));}
-    span#thumb{background: var(--slider-entity-row-thumb-color, var(--slider-entity-row-color)); box-shadow: var(--slider-entity-row-box-shadow, inherit);}`;
+    styleEl.innerHTML = `span#thumb{box-shadow: var(--slider-entity-row-box-shadow, inherit);}`;
     this._slider.shadowRoot?.appendChild(styleEl);
   }
 
@@ -211,6 +209,12 @@ class SliderEntityRow extends LitElement {
       ha-slider.slider-entity-row[size="small"] {
         --thumb-height: var(--slider-entity-row-thumb-size, var(--slider-entity-row-thumb-height, 16px));
         --thumb-width: var(--slider-entity-row-thumb-size, var(--slider-entity-row-thumb-width, 16px));
+        --ha-slider-track-color: var(--slider-entity-row-track-color, var(--disabled-color));
+        --ha-slider-indicator-color: var(--slider-entity-row-indicator-color, var(--primary-color));
+        --ha-slider-thumb-color: var(
+          --slider-entity-row-thumb-color,
+          var(--slider-entity-row-indicator-color, var(--primary-color))
+        );
         --track-size: var(
           --slider-entity-row-track-size,
           var(--ha-slider-track-size, 4px)
