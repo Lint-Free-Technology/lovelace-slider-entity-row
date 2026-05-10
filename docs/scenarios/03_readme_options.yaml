@@ -23,6 +23,11 @@ dashboard:
         name: hide_state
         hide_state: true
       - type: custom:slider-entity-row
+        entity: light.bed_light
+        name: hide_state_no_grow
+        hide_state: true
+        grow: false
+      - type: custom:slider-entity-row
         entity: light.ceiling_lights
         name: hide_when_off
         hide_when_off: true

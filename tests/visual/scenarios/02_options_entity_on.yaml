@@ -31,9 +31,9 @@ card:
       hide_state: true
     - type: custom:slider-entity-row
       entity: light.bed_light
-      name: hide_state_grow
+      name: hide_state_no_grow
       hide_state: true
-      grow: true
+      grow: false
     - type: custom:slider-entity-row
       entity: light.bed_light
       name: hide_when_off
@@ -45,10 +45,10 @@ card:
       hide_state: true
     - type: custom:slider-entity-row
       entity: light.bed_light
-      name: hide_when_off + hide_state + grow
+      name: hide_when_off + hide_state + no_grow
       hide_when_off: true
       hide_state: true
-      grow: true
+      grow: false
     - type: custom:slider-entity-row
       entity: light.bed_light
       name: hide_when_off + toggle
