@@ -1,9 +1,9 @@
 slider_entity_row_example:
-  slider-entity-row-track-color: 'rgba(94, 129, 172, 0.28)'
-  slider-entity-row-indicator-color: '#88c0d0'
-  slider-entity-row-thumb-color: '#eceff4'
-  slider-entity-row-thumb-height: '20px'
-  slider-entity-row-thumb-width: '28px'
-  slider-entity-row-track-size: '8px'
-  slider-entity-row-box-shadow: '0 0 0 4px rgba(136, 192, 208, 0.24)'
-  slider-entity-row-state-min-width: '64px'
+  slider-entity-row-thumb-height: 14px
+  slider-entity-row-thumb-width: 14px
+  slider-entity-row-track-size: 2px
+  slider-entity-row-state-min-width: 52px
+  slider-entity-row-track-color: "#ffefea"
+  slider-entity-row-indicator-color: "#ee2400"
+  slider-entity-row-thumb-color: "#900000"
+  slider-entity-row-box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px

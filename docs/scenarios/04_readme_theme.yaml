@@ -2,6 +2,7 @@ id: doc_readme_theme
 description: README theme example screenshot
 view_path: readme-theme
 theme: slider_entity_row_example
+
 dashboard:
   title: slider-entity-row
   views:
