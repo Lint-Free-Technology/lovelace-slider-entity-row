@@ -20,7 +20,7 @@ entities:
     entity: light.kitchen_lights
 ```
 
-![slider-entity-row](https://user-images.githubusercontent.com/1299821/59467898-15b16600-8e31-11e9-9924-53b108572d3a.png)
+![slider-entity-row](docs/source/assets/images/01_standard.png)
 
 ## Usage
 
@@ -38,7 +38,7 @@ entities:
 
 If you want to control more than one entity with the same slider, use [light group](https://www.home-assistant.io/integrations/light.group/), [cover group](https://www.home-assistant.io/integrations/cover.group/) or a custom made [template entity](https://www.home-assistant.io/integrations/#search/template).
 
-![domains](https://user-images.githubusercontent.com/1299821/59467899-1813c000-8e31-11e9-8abd-34c887a7db2a.png)
+![domains](docs/source/assets/images/02_domains.png)
 
 Available options:
 
@@ -50,7 +50,7 @@ Available options:
 | `toggle`        | `true`/`false` | Show a toggle or mute button if possible                                                                                                  | `false`  |
 | `hide_state`    | `true`/`false` | `true`: Do not display the current state <br>`false`: Always display current state - even when the card is too narrow for it to be usable | none     |
 | `hide_when_off` | `true`/`false` | `true`: Hide slider when state is off <br>`false`: Always display slider                                                                  | `false`  |
-| `grow`          | `true`/`false` | Make the slider as wide as possible (which is really just a little bit wider)                                                             | `false`  |
+| `grow`          | `true`/`false` | Let the slider grow to full available width without `full_row` behavior (most useful when state is hidden)                                | `false`  |
 | `full_row`      | `true`/`false` | Hide the icon and name and stretch slider to full width                                                                                   | `false`  |
 | `show_icon`     | `true`/`false` | Show an icon when `full_row` is true. This icon is NOT clickable                                                                          | `false`  |
 | `attribute`     | (see below)    | Which attribute the slider should control                                                                                                 |          |
@@ -59,7 +59,7 @@ Available options:
 
 Most general Entities row options like `name`, `icon` and `tap_action` et.al. are also supported.
 
-![options](https://user-images.githubusercontent.com/1299821/59467902-19dd8380-8e31-11e9-9173-97c9b6be3179.png)
+![options](docs/source/assets/images/03_options.png)
 
 <details><summary>YAML code for screenshot above</summary>
 
@@ -108,6 +108,7 @@ The slider exposes the following theme variables:
 | `--slider-entity-row-thumb-width`  | Slider thumb width                        | `var(--slider-entity-row-thumb-size, 16px)`                             |
 | `--slider-entity-row-track-size`   | Slider track thickness                    | `var(--ha-slider-track-size, 4px)` |
 | `--slider-entity-row-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                          |
+| `--slider-entity-row-state-min-width`   | Minimum width of the state/toggle. Adjust to cater for large state values and still have sliders align for multiple rows. | `45px`                          |
 
 ### Attribute
 

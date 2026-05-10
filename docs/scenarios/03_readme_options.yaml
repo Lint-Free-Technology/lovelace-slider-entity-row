@@ -1,0 +1,44 @@
+id: doc_readme_options
+description: README options screenshot
+view_path: readme-options
+dashboard:
+  title: slider-entity-row
+  views:
+  - path: readme-options
+    title: README Options
+    cards:
+    - type: entities
+      title: Options
+      show_header_toggle: false
+      entities:
+      - type: custom:slider-entity-row
+        entity: light.bed_light
+        name: Default
+      - type: custom:slider-entity-row
+        entity: light.bed_light
+        name: toggle
+        toggle: true
+      - type: custom:slider-entity-row
+        entity: light.bed_light
+        name: hide_state
+        hide_state: true
+      - type: custom:slider-entity-row
+        entity: light.ceiling_lights
+        name: hide_when_off
+        hide_when_off: true
+      - type: custom:slider-entity-row
+        entity: light.ceiling_lights
+        name: hide_when_off + toggle
+        hide_when_off: true
+        toggle: true
+      - type: section
+        label: full_row
+      - type: custom:slider-entity-row
+        entity: light.bed_light
+        name: hide_state
+        full_row: true
+doc_image:
+  output: docs/source/assets/images/03_options.png
+  root: hui-entities-card
+  padding: 16
+  threshold: 0.02

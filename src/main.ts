@@ -192,11 +192,12 @@ class SliderEntityRow extends LitElement {
         justify-content: flex-end;
         flex: 7;
         height: 40px;
-        gap: 8px !important;
       }
       .state {
-        min-width: 45px;
+        min-width: var(--slider-entity-row-state-min-width, 45px);
         text-align: end;
+        justify-content: flex-end;
+        margin-left: 8px;
       }
       ha-entity-toggle {
         min-width: auto;

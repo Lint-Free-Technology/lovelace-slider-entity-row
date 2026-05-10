@@ -1,9 +1,0 @@
-title: slider-entity-row
-views:
-  - !include views/1_types.yaml
-  - !include views/2_options.yaml
-  - !include views/3_attributes.yaml
-  - !include views/4_width.yaml
-  - !include views/5_errors.yaml
-  - title: test
-    cards: []

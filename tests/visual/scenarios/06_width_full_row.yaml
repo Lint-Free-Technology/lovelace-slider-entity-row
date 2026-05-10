@@ -1,0 +1,47 @@
+id: width_full_row
+description: Width behavior for full_row configuration
+view_path: width-full-row
+
+setup:
+  - type: ha_service
+    domain: light
+    service: turn_on
+    data:
+      entity_id: light.bed_light
+      brightness: 255
+
+card:
+  type: entities
+  show_header_toggle: false
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: default
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: default + toggle
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: full_row
+      full_row: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: full_row + toggle
+      full_row: true
+      toggle: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: full_row + hide_state
+      full_row: true
+      hide_state: true
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: full_row + show_icon
+      full_row: true
+      show_icon: true
+
+assertions:
+  - type: slider_rows_have_sliders
+  - type: snapshot
+    name: 06_width_full_row
