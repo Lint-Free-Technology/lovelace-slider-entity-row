@@ -1,4 +1,4 @@
-id: doc_readme_domains
+id: doc_02_readme_domains
 description: README supported-domains screenshot
 view_path: readme-domains
 dashboard:
@@ -20,7 +20,7 @@ dashboard:
       - type: custom:slider-entity-row
         entity: input_number.slider
 doc_image:
-  output: docs/source/assets/images/domains.png
+  output: docs/source/assets/images/02_domains.png
   root: hui-entities-card
   padding: 16
   threshold: 0.02

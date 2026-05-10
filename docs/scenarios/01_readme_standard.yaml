@@ -1,4 +1,4 @@
-id: doc_readme_standard
+id: doc_01_readme_standard
 description: README quick-start screenshot
 view_path: readme-standard
 dashboard:
@@ -15,7 +15,7 @@ dashboard:
       - type: custom:slider-entity-row
         entity: light.kitchen_lights
 doc_image:
-  output: docs/source/assets/images/standard.png
+  output: docs/source/assets/images/01_standard.png
   root: hui-entities-card
   padding: 16
   threshold: 0.02

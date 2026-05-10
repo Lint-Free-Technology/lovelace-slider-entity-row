@@ -1,4 +1,4 @@
-id: doc_readme_options
+id: doc_03_readme_options
 description: README options screenshot
 view_path: readme-options
 dashboard:
@@ -38,7 +38,7 @@ dashboard:
         name: hide_state
         full_row: true
 doc_image:
-  output: docs/source/assets/images/options.png
+  output: docs/source/assets/images/03_options.png
   root: hui-entities-card
   padding: 16
   threshold: 0.02

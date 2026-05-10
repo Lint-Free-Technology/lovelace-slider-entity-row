@@ -23,8 +23,8 @@ def _assert_slider_rows_have_sliders(page: Page) -> None:
     """Validate slider rows render in the expected HA row/slider structure.
 
     Checks that the current scenario view contains `hui-generic-entity-row` rows.
-    For every entities card that renders more than one generic row, verifies each
-    row includes an `ha-slider`.
+    For every entities card that renders more than one slider row, verifies each
+    of those rows includes an `ha-slider`.
     """
     dom_summary = page.evaluate(
         """
@@ -71,20 +71,32 @@ def _assert_slider_rows_have_sliders(page: Page) -> None:
 
           const genericRows = collectAll('hui-generic-entity-row');
           const entitiesCards = collectAll('hui-entities-card');
+          const countDeep = (root, selector) => {
+            if (!root || !root.querySelectorAll) {
+              return 0;
+            }
+            let count = root.querySelectorAll(selector).length;
+            const children = root.children ? Array.from(root.children) : [];
+            for (const child of children) {
+              if (child.shadowRoot) {
+                count += countDeep(child.shadowRoot, selector);
+              }
+              count += countDeep(child, selector);
+            }
+            return count;
+          };
+
           let multiRowCards = 0;
           let rowsChecked = 0;
           let rowsMissingSlider = 0;
 
           for (const card of entitiesCards) {
-            const rows = Array.from(card.querySelectorAll('hui-generic-entity-row'));
-            if (rows.length > 1) {
+            const rows = countDeep(card.shadowRoot, 'hui-generic-entity-row');
+            if (rows > 1) {
               multiRowCards += 1;
-              for (const row of rows) {
-                rowsChecked += 1;
-                if (!hasDeep(row, 'ha-slider') && !hasDeep(row.shadowRoot, 'ha-slider')) {
-                  rowsMissingSlider += 1;
-                }
-              }
+              rowsChecked += rows;
+              const sliders = countDeep(card.shadowRoot, 'ha-slider');
+              rowsMissingSlider += Math.max(0, rows - sliders);
             }
           }
 
