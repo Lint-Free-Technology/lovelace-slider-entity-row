@@ -223,9 +223,6 @@ class SliderEntityRow extends LitElement {
       ha-slider:not(.full) {
         max-width: 200px;
       }
-      ha-slider:not(.full)[size="small"] {
-        max-width: 150px;
-      }
       ha-slider.slider-entity-row::part(thumb)::before {
           content: "";
           border-radius: 50%;
