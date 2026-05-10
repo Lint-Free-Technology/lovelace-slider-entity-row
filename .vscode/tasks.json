@@ -31,7 +31,7 @@
     {
       "label": "HA: Start persistent server",
       "type": "shell",
-      "command": "source .venv/bin/activate && python tests/ha_server.py",
+      "command": "source .venv/bin/activate && HA_CONFIG_PATH=tests/ha-config HA_PLUGINS_YAML=tests/plugins.yaml python -m ha_testcontainer.ha_server",
       "isBackground": true,
       "problemMatcher": {
         "owner": "ha-server",
@@ -84,6 +84,17 @@
       }
     },
     {
+      "label": "pytest: Visual scenario - single (Update)",
+      "type": "shell",
+      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; SNAPSHOT_UPDATE=1 pytest tests/visual/test_scenarios.py -k '${input:scenarioId}'",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "group": "pytest"
+      }
+    },
+    {
       "label": "pytest: Doc images",
       "type": "shell",
       "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; pytest tests/visual/test_doc_images.py",
@@ -104,7 +115,29 @@
         "panel": "shared",
         "group": "pytest"
       }
-    }
+    },
+    {
+      "label": "pytest: Doc images - single",
+      "type": "shell",
+      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; pytest tests/visual/test_doc_images.py -k '${input:scenarioId}'",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "group": "pytest"
+      }
+    },
+    {
+      "label": "pytest: Doc images - single (Update)",
+      "type": "shell",
+      "command": "source .venv/bin/activate && if [ -f .ha_env ]; then source .ha_env; fi; DOC_IMAGE_UPDATE=1 pytest tests/visual/test_doc_images.py -k '${input:scenarioId}'",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "group": "pytest"
+      }
+    },
   ],
   "inputs": [
     {
