@@ -226,6 +226,7 @@ class SliderEntityRow extends LitElement {
       }
       ha-slider.slider-entity-row::part(thumb) {
         background: var(--slider-entity-row-thumb-color, var(--slider-entity-row-indicator-color, var(--ha-slider-thumb-color, var(--primary-color))));
+        overflow: visible;
       }
       ha-slider.slider-entity-row::part(thumb)::before {
           content: "";
@@ -238,10 +239,6 @@ class SliderEntityRow extends LitElement {
           top: calc(-50% - 4px);
           z-index: -1;
           opacity: 0;
-      }
-      ha-slider.slider-entity-row::part(thumb):hover,
-      ha-slider.slider-entity-row::part(thumb):active {
-          overflow: visible;
       }
       ha-slider.slider-entity-row::part(thumb):hover::before {
           opacity: var(--slider-entity-row-thumb-hover-opacity, var(--ha-ripple-hover-opacity, 0.08));
