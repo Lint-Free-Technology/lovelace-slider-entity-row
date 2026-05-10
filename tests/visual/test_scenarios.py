@@ -23,8 +23,9 @@ def _assert_slider_rows_have_sliders(page: Page) -> None:
     """Validate slider rows render in the expected HA row/slider structure.
 
     Checks that the current scenario view contains `hui-generic-entity-row` rows.
-    For each entities card that renders more than one generic row, verifies the
-    row count is matched by `ha-slider` elements inside that card.
+    For each entities card that renders more than one generic row, performs
+    deep shadow-DOM counting of row and `ha-slider` elements and fails if any
+    such row is missing a slider.
     """
     dom_summary = page.evaluate(
         """
@@ -119,7 +120,8 @@ def _assert_slider_rows_have_sliders(page: Page) -> None:
         """
     )
 
-    assert "error" not in dom_summary, dom_summary["error"]
+    error = dom_summary.get("error")
+    assert error is None, error
     assert dom_summary["genericRows"] > 0, "Expected rendered hui-generic-entity-row elements"
     assert dom_summary["multiRowCards"] > 0, "Expected at least one entities card with multiple generic rows"
     assert dom_summary["rowsChecked"] > 0, "Expected to check at least one generic row for slider rendering"
