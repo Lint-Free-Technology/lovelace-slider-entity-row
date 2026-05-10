@@ -21,3 +21,11 @@ input_select:
       - A
       - B
       - C
+
+timer:
+  demo_timer:
+    duration: '00:10:00'
+    name: Demo timer
+
+water_heater:
+  platform: demo

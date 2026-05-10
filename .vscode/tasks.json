@@ -31,7 +31,7 @@
     {
       "label": "HA: Start persistent server",
       "type": "shell",
-      "command": "source .venv/bin/activate && HA_CONFIG_PATH=tests/ha-config HA_PLUGINS_YAML=tests/plugins.yaml python -m ha_testcontainer.ha_server",
+      "command": "source .venv/bin/activate && HA_VERSION=${input:haVersion} HA_CONFIG_PATH=tests/ha-config HA_PLUGINS_YAML=tests/plugins.yaml python -m ha_testcontainer.ha_server",
       "isBackground": true,
       "problemMatcher": {
         "owner": "ha-server",
@@ -144,6 +144,12 @@
       "id": "scenarioId",
       "type": "promptString",
       "description": "Scenario id or pytest -k expression (e.g. options)"
+    },
+    {
+      "id": "haVersion",
+      "type": "promptString",
+      "description": "Home Assistant version to test against (e.g. stable, 2024.6.0, beta, dev)",
+      "default": "stable"
     }
   ]
 }

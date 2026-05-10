@@ -1,4 +1,4 @@
-id: 03_light_attributes
+id: light_attributes
 description: Light attribute controller coverage
 view_path: light-attributes
 

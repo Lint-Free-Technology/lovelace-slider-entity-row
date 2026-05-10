@@ -1,4 +1,4 @@
-id: 05_errors
+id: errors
 description: Error rendering for missing or invalid entities
 view_path: errors
 
