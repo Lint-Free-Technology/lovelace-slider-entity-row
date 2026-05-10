@@ -121,6 +121,14 @@ The slider exposes the following theme variables:
 | `--slider-entity-row-track-size`   | Slider track thickness                    | `var(--ha-slider-track-size, 4px)` |
 | `--slider-entity-row-thumb-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                          |
 | `--slider-entity-row-state-min-width`   | Minimum width of the state/toggle. Adjust to cater for large state values and still have sliders align for multiple rows. | `45px`                          |
+| `--slider-entity-row-tooltip-color` | Tooltip text color | `var(--ha-tooltip-text-color, var(--primary-text-color))` |
+| `--slider-entity-row-tooltip-font-size` | Tooltip font size | `var(--ha-tooltip-font-size, var(--ha-font-size-s))` |
+| `--slider-entity-row-tooltip-font-weight` | Tooltip font weight | `var(--ha-tooltip-font-weight, var(--ha-font-weight-normal))` |
+| `--slider-entity-row-tooltip-background-color` | Tooltip background color | `var(--ha-tooltip-background-color, var(--secondary-background-color))` |
+| `--slider-entity-row-tooltip-border-radius` | Tooltip border radius | `var(--ha-tooltip-border-radius, var(--ha-border-radius-sm))` |
+| `--slider-entity-row-tooltip-border-width` | Tooltip border width | `0px` |
+| `--slider-entity-row-tooltip-border-color` | Tooltip border color | `currentColor` |
+| `--slider-entity-row-tooltip-border-style` | Tooltip border style | `none` |
 
 
 When `colorize: true` is enabled, the row applies inline slider colors for supported attributes, which take precedence over these theme variables.
