@@ -17,6 +17,7 @@ from ha_testcontainer.visual.scenario_runner import (
 _ALL_SCENARIOS = load_all_scenarios()
 _SCENARIO_IDS = [s["id"] for s in _ALL_SCENARIOS]
 _SCENARIO_MAP = {s["id"]: s for s in _ALL_SCENARIOS}
+_CONTENT_WAIT_TIMEOUT_MS = 20_000
 
 
 def _wait_for_slider_scenario_content(page: Page) -> None:
@@ -48,7 +49,8 @@ def _wait_for_slider_scenario_content(page: Page) -> None:
           return collectAll('hui-entities-card') > 0 && collectAll('slider-entity-row') > 0;
         }
         """,
-        timeout=20_000,
+        # Rendering can be slower on CI when HA initializes resources and custom cards.
+        timeout=_CONTENT_WAIT_TIMEOUT_MS,
     )
 
 

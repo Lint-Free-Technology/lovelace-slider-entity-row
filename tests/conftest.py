@@ -17,7 +17,7 @@ _sr.REPO_ROOT = REPO_ROOT
 _sr.DOCS_SCENARIOS_DIR = _sr.REPO_ROOT / "docs" / "scenarios"
 
 # Keep backward-compatible update flag naming used in local docs/scripts.
-if os.environ.get("VISUAL_UPDATE") == "1":
+if os.environ.get("VISUAL_UPDATE", "").strip().lower() in {"1", "true", "yes", "on"}:
     os.environ.setdefault("SNAPSHOT_UPDATE", "1")
 
 # Ensure snapshot assertions always read/write baselines in this repository.
