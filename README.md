@@ -109,9 +109,9 @@ The slider exposes the following theme variables:
 
 | Variable                          | Description                               | Default                                      |
 | --------------------------------- | ----------------------------------------- | -------------------------------------------- |
-| `--slider-entity-row-color` | Slider color used for both track and thumb | unset (track falls back to `--_inactive-track-color`/`--_active-track-color`, thumb keeps HA default) |
-| `--slider-entity-row-track-color` | Slider track color override | `var(--slider-entity-row-color)` |
-| `--slider-entity-row-thumb-color` | Slider thumb color override | `var(--slider-entity-row-color)` |
+| `--slider-entity-row-color` | Shared color fallback for track and thumb | unset (track falls back to `--_inactive-track-color`/`--_active-track-color`; thumb background only applies when a slider color variable is set) |
+| `--slider-entity-row-track-color` | Slider track color override | unset (falls back to `--slider-entity-row-color` when set) |
+| `--slider-entity-row-thumb-color` | Slider thumb color override | unset (falls back to `--slider-entity-row-color` when set) |
 | `--slider-entity-row-thumb-size` | Slider thumb size                           | unset                              |
 | `--slider-entity-row-thumb-height` | Slider thumb height                       | `var(--slider-entity-row-thumb-size, 16px)`                             |
 | `--slider-entity-row-thumb-width`  | Slider thumb width                        | `var(--slider-entity-row-thumb-size, 16px)`                             |
