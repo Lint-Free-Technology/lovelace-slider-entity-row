@@ -13,35 +13,15 @@ from ha_testcontainer.visual.scenario_runner import (
     run_interactions,
     set_theme,
 )
+from setup_interactions import split_setup_interactions
 
 # ---------------------------------------------------------------------------
 # Collect scenarios at import time so pytest can parametrize correctly.
 # ---------------------------------------------------------------------------
 
-_SETUP_POST_NAVIGATION_INTERACTIONS = {
-    "hover",
-    "hover_away",
-    "click",
-    "dispatch_window_event",
-}
-
 _ALL_SCENARIOS = load_all_scenarios()
 _SCENARIO_IDS = [s["id"] for s in _ALL_SCENARIOS]
 _SCENARIO_MAP = {s["id"]: s for s in _ALL_SCENARIOS}
-
-
-def _split_setup_interactions(scenario: dict) -> tuple[list[dict], list[dict]]:
-    setup = scenario.get("setup", [])
-    setup_before_navigation = []
-    setup_after_navigation = []
-
-    for interaction in setup:
-        if interaction.get("type") in _SETUP_POST_NAVIGATION_INTERACTIONS:
-            setup_after_navigation.append(interaction)
-        else:
-            setup_before_navigation.append(interaction)
-
-    return setup_before_navigation, setup_after_navigation
 
 # ---------------------------------------------------------------------------
 # Parametrised test
@@ -65,7 +45,7 @@ def test_scenario(
     """
     scenario = _SCENARIO_MAP[scenario_id]
     theme = scenario.get("theme")
-    setup_before_navigation, setup_after_navigation = _split_setup_interactions(
+    setup_before_navigation, setup_after_navigation = split_setup_interactions(
         scenario
     )
 
