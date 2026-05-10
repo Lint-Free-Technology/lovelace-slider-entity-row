@@ -121,6 +121,24 @@ The slider exposes the following theme variables:
 
 When `colorize: true` is enabled, the row applies inline slider colors for supported attributes, which take precedence over these theme variables.
 
+Example Home Assistant theme (theme keys omit the leading `--` used in CSS):
+
+```yaml
+frontend:
+  themes:
+    slider_entity_row_example:
+      slider-entity-row-track-color: rgba(94, 129, 172, 0.28)
+      slider-entity-row-indicator-color: '#88c0d0'
+      slider-entity-row-thumb-color: '#eceff4'
+      slider-entity-row-thumb-height: 20px
+      slider-entity-row-thumb-width: 28px
+      slider-entity-row-track-size: 8px
+      slider-entity-row-box-shadow: 0 0 0 4px rgba(136, 192, 208, 0.24)
+      slider-entity-row-state-min-width: 64px
+```
+
+![theme example](docs/source/assets/images/04_theme.png)
+
 ### Attribute
 
 Currently, the following attribute settings are supported.
