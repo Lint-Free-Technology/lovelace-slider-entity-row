@@ -10,7 +10,7 @@ setup:
       entity_id: light.bed_light
       brightness: 128
   - type: hover
-    selector: ha-slider.slider-entity-row
+    selector: ha-slider.slider-entity-row >> nth=0
     settle_ms: 800
 
 card:
@@ -20,6 +20,10 @@ card:
     - type: custom:slider-entity-row
       entity: light.bed_light
       name: hover_thumb
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hover_thumb_toggle
+      toggle: true
 
 assertions:
   - type: slider_rows_have_sliders
