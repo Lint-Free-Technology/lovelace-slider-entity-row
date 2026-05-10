@@ -1,0 +1,20 @@
+id: 02_cover_attributes
+description: Cover attribute controller coverage
+view_path: cover-attributes
+
+card:
+  type: entities
+  show_header_toggle: false
+  entities:
+    - type: custom:slider-entity-row
+      entity: cover.living_room_window
+      name: position
+    - type: custom:slider-entity-row
+      entity: cover.living_room_window
+      name: tilt
+      attribute: tilt
+
+assertions:
+  - type: slider_rows_have_sliders
+  - type: snapshot
+    name: 02_cover_attributes
