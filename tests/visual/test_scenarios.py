@@ -17,11 +17,15 @@ from ha_testcontainer.visual.scenario_runner import (
 _ALL_SCENARIOS = load_all_scenarios()
 _SCENARIO_IDS = [s["id"] for s in _ALL_SCENARIOS]
 _SCENARIO_MAP = {s["id"]: s for s in _ALL_SCENARIOS}
-_CONTENT_WAIT_TIMEOUT_MS = 20_000
+_CONTENT_WAIT_TIMEOUT = 20_000
 
 
 def _wait_for_slider_scenario_content(page: Page) -> None:
-    """Wait until the rendered Lovelace view contains entities cards and slider rows."""
+    """Wait until rendered Lovelace content includes entities cards and slider rows.
+
+    Raises Playwright TimeoutError if the scenario content does not appear
+    within the configured wait timeout.
+    """
     page.wait_for_function(
         """
         () => {
@@ -50,7 +54,7 @@ def _wait_for_slider_scenario_content(page: Page) -> None:
         }
         """,
         # Rendering can be slower on CI when HA initializes resources and custom cards.
-        timeout=_CONTENT_WAIT_TIMEOUT_MS,
+        timeout=_CONTENT_WAIT_TIMEOUT,
     )
 
 
