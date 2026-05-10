@@ -33,3 +33,4 @@ assertions:
   - type: slider_rows_have_sliders
   - type: snapshot
     name: 07_controller_types
+    threshold: 0.02

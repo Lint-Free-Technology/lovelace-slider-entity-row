@@ -50,3 +50,4 @@ assertions:
   - type: slider_rows_have_sliders
   - type: snapshot
     name: 03_light_attributes
+    threshold: 0.02

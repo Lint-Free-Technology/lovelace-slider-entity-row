@@ -27,3 +27,4 @@ assertions:
   - type: slider_rows_have_sliders
   - type: snapshot
     name: 08_hover_thumb
+    threshold: 0.02

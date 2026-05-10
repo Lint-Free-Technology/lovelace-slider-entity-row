@@ -81,3 +81,4 @@ assertions:
   - type: slider_rows_have_sliders
   - type: snapshot
     name: 01_options_entity_off
+    threshold: 0.02

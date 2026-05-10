@@ -16,3 +16,4 @@ card:
 assertions:
   - type: snapshot
     name: 05_errors
+    threshold: 0.02

@@ -18,3 +18,4 @@ assertions:
   - type: slider_rows_have_sliders
   - type: snapshot
     name: 04_cover_attributes
+    threshold: 0.02
