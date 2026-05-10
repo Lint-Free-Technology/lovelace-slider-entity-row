@@ -109,9 +109,9 @@ The slider exposes the following theme variables:
 
 | Variable                          | Description                               | Default                                      |
 | --------------------------------- | ----------------------------------------- | -------------------------------------------- |
-| `--slider-entity-row-track-color` | Slider base track color | `var(--disabled-color)` |
-| `--slider-entity-row-indicator-color` | Slider active indicator color | `var(--primary-color)` |
-| `--slider-entity-row-thumb-color` | Slider thumb color | `var(--slider-entity-row-indicator-color)` |
+| `--slider-entity-row-track-color` | Slider base track color | `var(--ha-slider-track-color, var(--disabled-color))` |
+| `--slider-entity-row-indicator-color` | Slider active indicator color | `var(--ha-slider-indicator-color, var(--primary-color))` |
+| `--slider-entity-row-thumb-color` | Slider thumb color | `var(--slider-entity-row-indicator-color, var(--ha-slider-thumb-color, var(--primary-color)))` |
 | `--slider-entity-row-thumb-size` | Slider thumb size                           | unset                              |
 | `--slider-entity-row-thumb-height` | Slider thumb height                       | `var(--slider-entity-row-thumb-size, 16px)`                             |
 | `--slider-entity-row-thumb-width`  | Slider thumb width                        | `var(--slider-entity-row-thumb-size, 16px)`                             |
