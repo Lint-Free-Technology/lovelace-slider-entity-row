@@ -20,12 +20,15 @@ class SliderEntityRow extends LitElement {
     if (config.attribute === "color_temp_mired")
       throw Error("color_temp_mired has been removed");
 
-    this._config = config;
+    this._config = {
+      grow: true,
+      ...config,
+    };
     if (!config.entity) throw new Error(`No entity specified.`);
     const domain = config.entity.split(".")[0];
     const ctrlClass = getController(domain);
     if (!ctrlClass) throw new Error(`Unsupported entity type: ${domain}`);
-    this.ctrl = new ctrlClass(config, this);
+    this.ctrl = new ctrlClass(this._config, this);
   }
 
   static getConfigElement() {
