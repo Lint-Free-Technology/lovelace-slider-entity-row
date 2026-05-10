@@ -21,6 +21,7 @@ class SliderEntityRow extends LitElement {
       throw Error("color_temp_mired has been removed");
 
     this._config = {
+      tooltip_distance: 20,
       grow: true,
       ...config,
     };
@@ -58,6 +59,10 @@ class SliderEntityRow extends LitElement {
     styleEl.classList.add("slider-entity-row");
     styleEl.innerHTML = `span#thumb{box-shadow: var(--slider-entity-row-thumb-box-shadow, inherit);}`;
     this._slider.shadowRoot?.appendChild(styleEl);
+    const tooltip = this._slider.shadowRoot?.querySelector("wa-tooltip");
+    if (tooltip) {
+      tooltip.setAttribute("distance", this._config.tooltip_distance);
+    }
   }
 
   async connectedCallback() {
@@ -243,6 +248,16 @@ class SliderEntityRow extends LitElement {
       }
       ha-slider.slider-entity-row::part(thumb):active::before {
           opacity: var(--slider-entity-row-thumb-pressed-opacity, var(--ha-ripple-pressed-opacity, 0.12));
+      }
+      ha-slider.slider-entity-row::part(tooltip) {
+        --wa-tooltip-content-color: var(--slider-entity-row-tooltip-color, var(--ha-tooltip-text-color, var(--primary-text-color)));
+        --wa-tooltip-font-size: var(--slider-entity-row-tooltip-font-size, var(--ha-tooltip-font-size, var(--ha-font-size-s)));
+        --wa-tooltip-font-weight: var(--slider-entity-row-tooltip-font-weight, var(--ha-tooltip-font-weight, var(--ha-font-weight-normal)));
+        --wa-tooltip-background-color: var(--slider-entity-row-tooltip-background-color, var(--ha-tooltip-background-color, var(--secondary-background-color)));
+        --wa-tooltip-border-radius: var(--slider-entity-row-tooltip-border-radius, var(--ha-tooltip-border-radius, var(--ha-border-radius-sm)));
+        --wa-tooltip-border-width: var(--slider-entity-row-tooltip-border-width, 0px);
+        --wa-tooltip-border-color: var(--slider-entity-row-tooltip-border-color, currentColor);
+        --wa-tooltip-border-style: var(--slider-entity-row-tooltip-border-style, none);
       }
     `;
   }

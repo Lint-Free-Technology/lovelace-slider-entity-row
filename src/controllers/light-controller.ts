@@ -202,8 +202,6 @@ export class LightController extends Controller {
         break;
     }
 
-    console.log(attr, value);
-
     if (on) {
       this._hass.callService("light", "turn_on", {
         entity_id: this.stateObj.entity_id,

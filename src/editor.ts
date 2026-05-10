@@ -60,6 +60,10 @@ class SliderEntityRowEditor extends LitElement {
             name: "step",
             selector: { number: { min: -1e32, max: 1e32, mode: "box" } },
           },
+          {
+            name: "tooltip_distance",
+            selector: { number: { min: 0, max: 100, mode: "box" } },
+          }
         ],
       },
       {
