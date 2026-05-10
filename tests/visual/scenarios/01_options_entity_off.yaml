@@ -1,4 +1,4 @@
-id: options_entity_off
+id: 01_options_entity_off
 description: Test different options of slider-entity-row with light.bed_light OFF
 view_path: options-entity-off
 
