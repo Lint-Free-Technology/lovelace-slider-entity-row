@@ -56,7 +56,7 @@ class SliderEntityRow extends LitElement {
       return;
     const styleEl = document.createElement("style");
     styleEl.classList.add("slider-entity-row");
-    styleEl.innerHTML = `span#thumb{box-shadow: var(--slider-entity-row-box-shadow, inherit);}`;
+    styleEl.innerHTML = `span#thumb{box-shadow: var(--slider-entity-row-thumb-box-shadow, inherit);}`;
     this._slider.shadowRoot?.appendChild(styleEl);
   }
 

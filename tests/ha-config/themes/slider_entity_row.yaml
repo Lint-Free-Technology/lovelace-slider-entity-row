@@ -6,4 +6,4 @@ slider_entity_row_example:
   slider-entity-row-track-color: "#ffefea"
   slider-entity-row-indicator-color: "#ee2400"
   slider-entity-row-thumb-color: "#900000"
-  slider-entity-row-box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px
+  slider-entity-row-thumb-box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px
