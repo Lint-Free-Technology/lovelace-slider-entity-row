@@ -8,7 +8,10 @@ class SliderEntityRowEditor extends LitElement {
   @state() _config?: ControllerConfig;
 
   setConfig(config) {
-    this._config = config;
+    this._config = {
+      grow: true,
+      ...config,
+    };
   }
 
   _schema(selected_domain?) {
