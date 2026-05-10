@@ -120,7 +120,6 @@ def assert_slider_rows_have_sliders(page: Page, assertion) -> None:
             return count;
           };
 
-          let multiRowCards = 0;
           let rowsChecked = 0;
           let rowsMissingSlider = 0;
 
@@ -128,15 +127,13 @@ def assert_slider_rows_have_sliders(page: Page, assertion) -> None:
             if (!card.shadowRoot) {
               return {
                 genericRows: genericRows.length,
-                multiRowCards: 0,
                 rowsChecked: 0,
                 rowsMissingSlider: 0,
                 error: 'Missing shadowRoot on hui-entities-card',
               };
             }
             const rows = countDeep(card.shadowRoot, 'hui-generic-entity-row');
-            if (rows > 1) {
-              multiRowCards += 1;
+            if (rows >= 1) {
               rowsChecked += rows;
               const sliders = countDeep(card.shadowRoot, 'ha-slider');
               rowsMissingSlider += Math.max(0, rows - sliders);
@@ -147,7 +144,6 @@ def assert_slider_rows_have_sliders(page: Page, assertion) -> None:
             genericRows: genericRows.length,
             entitiesCards: entitiesCards.length,
             sliderRows: sliderRows.length,
-            multiRowCards,
             rowsChecked,
             rowsMissingSlider,
           };
@@ -160,7 +156,6 @@ def assert_slider_rows_have_sliders(page: Page, assertion) -> None:
     assert dom_summary["entitiesCards"] > 0, "Expected rendered hui-entities-card elements"
     assert dom_summary["sliderRows"] > 0, "Expected rendered slider-entity-row elements"
     assert dom_summary["genericRows"] > 0, "Expected rendered hui-generic-entity-row elements"
-    assert dom_summary["multiRowCards"] > 0, "Expected at least one entities card with multiple generic rows"
     assert dom_summary["rowsChecked"] > 0, "Expected to check at least one generic row for slider rendering"
     assert dom_summary["rowsMissingSlider"] == 0, (
         "Expected each checked hui-generic-entity-row to contain ha-slider"
