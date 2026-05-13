@@ -148,8 +148,8 @@
     {
       "id": "haVersion",
       "type": "promptString",
-      "description": "Home Assistant version to test against (e.g. stable, 2024.6.0, beta, dev)",
-      "default": "stable"
+      "description": "Home Assistant version to test against (e.g. 2026.5.1, 2024.6.0, beta, dev)",
+      "default": "2026.5.1"
     }
   ]
 }

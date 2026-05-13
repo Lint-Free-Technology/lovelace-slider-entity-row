@@ -16,7 +16,7 @@ _ENV_FILE = _REPO_ROOT / ".ha_env"
 
 def main() -> None:
     try:
-        from ha_testcontainer import HATestContainer, HAVersion
+        from ha_testcontainer import HATestContainer
     except ImportError:
         print("ha_testcontainer is not installed. Run: pip install -e '.[test]'", file=sys.stderr)
         sys.exit(1)
@@ -25,7 +25,7 @@ def main() -> None:
         print("dist/slider-entity-row.js is missing. Run: npm run build", file=sys.stderr)
         sys.exit(1)
 
-    ha_version = os.environ.get("HA_VERSION", HAVersion.STABLE)
+    ha_version = os.environ.get("HA_VERSION", "2026.5.1")
     ha_tmp = Path(tempfile.mkdtemp(prefix="slider-row-ha-state-"))
     shutil.copytree(str(_HA_CONFIG_DIR), str(ha_tmp), dirs_exist_ok=True)
 
