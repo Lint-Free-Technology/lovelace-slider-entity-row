@@ -20,6 +20,8 @@ playwright install --with-deps chromium
 
 ## Setup and run tests (VS Code tasks or CLI)
 
+Home Assistant test version is read from `tests/HA_VERSION`.
+
 ### VS Code tasks
 
 Open **Run Task...** and use:

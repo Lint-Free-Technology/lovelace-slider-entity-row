@@ -10,8 +10,20 @@ from pathlib import Path
 
 _REPO_ROOT = Path(__file__).parent.parent
 _HA_CONFIG_DIR = _REPO_ROOT / "tests" / "ha-config"
+_HA_VERSION_FILE = _REPO_ROOT / "tests" / "HA_VERSION"
 _DIST_JS = _REPO_ROOT / "dist" / "slider-entity-row.js"
 _ENV_FILE = _REPO_ROOT / ".ha_env"
+
+
+def _default_ha_version() -> str:
+    if not _HA_VERSION_FILE.exists():
+        print(f"{_HA_VERSION_FILE} is missing.", file=sys.stderr)
+        sys.exit(1)
+    ha_version = _HA_VERSION_FILE.read_text(encoding="utf-8").strip()
+    if not ha_version:
+        print(f"{_HA_VERSION_FILE} is empty.", file=sys.stderr)
+        sys.exit(1)
+    return ha_version
 
 
 def main() -> None:
@@ -25,7 +37,7 @@ def main() -> None:
         print("dist/slider-entity-row.js is missing. Run: npm run build", file=sys.stderr)
         sys.exit(1)
 
-    ha_version = os.environ.get("HA_VERSION", "2026.5.1")
+    ha_version = os.environ.get("HA_VERSION") or _default_ha_version()
     ha_tmp = Path(tempfile.mkdtemp(prefix="slider-row-ha-state-"))
     shutil.copytree(str(_HA_CONFIG_DIR), str(ha_tmp), dirs_exist_ok=True)
 
