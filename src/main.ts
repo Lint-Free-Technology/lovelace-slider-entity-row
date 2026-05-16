@@ -214,8 +214,9 @@ class SliderEntityRow extends LitElement {
           --slider-entity-row-track-size,
           var(--ha-slider-track-size, 4px)
         );
+        padding: 0 calc(var(--thumb-width, 16px) / 2);
       }
-      ha-slider:not(.full) {
+      ha-slider.slider-entity-row:not(.full) {
         max-width: 200px;
       }
       ha-slider.slider-entity-row::part(track) {
