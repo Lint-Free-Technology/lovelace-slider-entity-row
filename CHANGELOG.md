@@ -13,7 +13,8 @@
 
 ### ⭐ New Features
 
-* Adapt to changes in entity toggle with 2026.5.1. Add state min-width CSS var ([2bd2338](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/2bd23389d701087c0e6efce94d2fe7a90815c088))
+* Adjust left right padding of slider so thumb lines up with state / switch ([f21e8c5](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/f21e8c5dc1e6117f5da2f54e4b51cc20bc0291db))
+* Adapt to changes in entity toggle with 2026.5.2. Add state min-width CSS var ([2bd2338](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/2bd23389d701087c0e6efce94d2fe7a90815c088))
 * Add CSS slider vars for track/indicator/thumb theme colors ([#33](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/33)) ([862190c](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/862190c8e0acbcf032e44b3b4ca9dd877a427057)), closes [#29](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/29)
 * Allow for setting slider tooltip distance in config (default 20). Allow for styling of slider tooltip with CSS variables. ([31cc252](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/31cc25261bc09f616dff5bb4dc6540f379269e6b)), closes [#37](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/37)
 * Slider thumb hover/pressed effect with opacity being able to be set by theme CSS vars. ([191fe0b](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/191fe0b65be4e66995e91da6d53be75270dcf432)), closes [#30](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/30)
@@ -28,7 +29,6 @@
 
 ### ⚙️ Miscellaneous
 
-* Adjust left right padding of slider so thumb lines up with state / switch ([f21e8c5](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/f21e8c5dc1e6117f5da2f54e4b51cc20bc0291db))
 * Default `grow` to `true` for slider rows ([#28](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/28)) ([b401fdc](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/b401fdcc0a6dc7bf06089b8a35e5a23365710cdc)), closes [#27](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/27)
 * Migrate from legacy devcontainer/docker tests to ha-testcontainer scenario-based visual pipeline ([#26](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/26)) ([4cca881](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/4cca881ba07315a3f290ae72038108f89dbc8428))
 * Rename CSS var `--slider-entity-row-box-shadow` to `--slider-entity-row-thumb-box-shadow` ([22524f3](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/22524f3288082738facbfc05b25e600d89d348c5))
