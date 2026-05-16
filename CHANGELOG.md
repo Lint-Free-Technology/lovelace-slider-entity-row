@@ -1,3 +1,9 @@
+## [19.0.0-beta.2](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v19.0.0-beta.1...v19.0.0-beta.2) (2026-05-16)
+
+### ⭐ New Features
+
+* Add CSS var for slider padding ([eb29bcf](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/eb29bcf190598cef8740c549be09f62bda161199))
+
 ## [19.0.0-beta.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v18.1.0...v19.0.0-beta.1) (2026-05-16)
 
 ### ⚠ BREAKING CHANGES
