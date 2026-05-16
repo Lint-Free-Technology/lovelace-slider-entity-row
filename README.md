@@ -117,8 +117,8 @@ The slider exposes the following theme variables:
 | `--slider-entity-row-thumb-height` | Slider thumb height                       | `var(--slider-entity-row-thumb-size, 16px)`                             |
 | `--slider-entity-row-thumb-width`  | Slider thumb width                        | `var(--slider-entity-row-thumb-size, 16px)`                             |
 | `--slider-entity-row-slider-padding`  | Padding applied to slider. Use to fine tune slider thumb position. | `0 calc(var(--slider-entity-row-thumb-size, var(--slider-entity-row-thumb-width, 16px)) / 2)`                             |
-| `--slider-entity-row-hover-opacity`  | Hover opacity for the thumb             | `var(--ha-ripple-hover-opacity, 0.08)`                             |
-| `--slider-entity-row-pressed-opacity`  | Pressed opacity for the thumb while pressed                        | `var(--ha-ripple-pressed-opacity, 0.12)`        |
+| `--slider-entity-row-thumb-hover-opacity`  | Hover opacity for the thumb             | `var(--ha-ripple-hover-opacity, 0.08)`                             |
+| `--slider-entity-row-thumb-pressed-opacity`  | Pressed opacity for the thumb while pressed                        | `var(--ha-ripple-pressed-opacity, 0.12)`        |
 | `--slider-entity-row-track-size`   | Slider track thickness                    | `var(--ha-slider-track-size, 4px)` |
 | `--slider-entity-row-thumb-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                          |
 | `--slider-entity-row-state-min-width`   | Minimum width of the state/toggle. Adjust to cater for large state values and still have sliders align for multiple rows. | `45px`                          |
