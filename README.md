@@ -6,7 +6,7 @@ Add a slider to rows in lovelace [entities](https://www.home-assistant.io/lovela
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Lint-Free-Technology&repository=lovelace-slider-entity-row&category=plugin)
 
-To install via HACS, add this repo [https://github.com/Lint-Free-Technology/lovelace-slider-entity-row](https://github.com/Lint-Free-Technology/lovelace-slider-entiti-row) as a [custom HACS repository](https://www.hacs.xyz/docs/faq/custom_repositories/) using type `Dashboard`. Use the button above to do this in one step. You are best to remove [thomasloven/lovelace-auto-entities](https://github.com/thomasloven/lovelace-slider-entity-row) in your HACS to avoid confusion as to what repo you are using.
+To install via HACS, add this repo [https://github.com/Lint-Free-Technology/lovelace-slider-entity-row](https://github.com/Lint-Free-Technology/lovelace-slider-entiti-row) as a [custom HACS repository](https://www.hacs.xyz/docs/faq/custom_repositories/) using type `Dashboard`. Use the button above to do this in one step. You are best to remove [thomasloven/lovelace-slider-entity-row](https://github.com/thomasloven/lovelace-slider-entity-row) in your HACS to avoid confusion as to what repo you are using.
 
 ## Quick Start
 
@@ -20,7 +20,7 @@ entities:
     entity: light.kitchen_lights
 ```
 
-![slider-entity-row](https://user-images.githubusercontent.com/1299821/59467898-15b16600-8e31-11e9-9924-53b108572d3a.png)
+![slider-entity-row](docs/source/assets/images/01_standard.png)
 
 ## Usage
 
@@ -38,7 +38,7 @@ entities:
 
 If you want to control more than one entity with the same slider, use [light group](https://www.home-assistant.io/integrations/light.group/), [cover group](https://www.home-assistant.io/integrations/cover.group/) or a custom made [template entity](https://www.home-assistant.io/integrations/#search/template).
 
-![domains](https://user-images.githubusercontent.com/1299821/59467899-1813c000-8e31-11e9-8abd-34c887a7db2a.png)
+![domains](docs/source/assets/images/02_domains.png)
 
 Available options:
 
@@ -47,25 +47,27 @@ Available options:
 | `min`           | number         | Minimum value of slider                                                                                                                   |          |
 | `max`           | number         | Maximum value of slider                                                                                                                   |          |
 | `step`          | number         | Step size of slider selection                                                                                                             |          |
+| `tooltip_distance` | number      | Distance in pixels of slider tooltip away from thumb                  | 20        |
 | `toggle`        | `true`/`false` | Show a toggle or mute button if possible                                                                                                  | `false`  |
 | `hide_state`    | `true`/`false` | `true`: Do not display the current state <br>`false`: Always display current state - even when the card is too narrow for it to be usable | none     |
 | `hide_when_off` | `true`/`false` | `true`: Hide slider when state is off <br>`false`: Always display slider                                                                  | `false`  |
-| `grow`          | `true`/`false` | Make the slider as wide as possible (which is really just a little bit wider)                                                             | `false`  |
+| `grow`          | `true`/`false` | Let the slider grow to full available width without `full_row` behavior (most useful when state is hidden)                                | `true`  |
 | `full_row`      | `true`/`false` | Hide the icon and name and stretch slider to full width                                                                                   | `false`  |
 | `show_icon`     | `true`/`false` | Show an icon when `full_row` is true. This icon is NOT clickable                                                                          | `false`  |
 | `attribute`     | (see below)    | Which attribute the slider should control                                                                                                 |          |
-| `colorize`      | `true`/`false` | Colorize the bar (only for some attributes)                                                                                               | `false`  |
+| `colorize`      | `true`/`false` | Colorize the bar (only for some attributes). This uses inline styles and overrides slider theme color variables while enabled.            | `false`  |
 | `dir`           | `ltr`/`rtl`    | Use this to override your languages Right-To-Left or Left-To-Right setting                                                                | language |
 
 Most general Entities row options like `name`, `icon` and `tap_action` et.al. are also supported.
 
-![options](https://user-images.githubusercontent.com/1299821/59467902-19dd8380-8e31-11e9-9173-97c9b6be3179.png)
+![options](docs/source/assets/images/03_options.png)
 
 <details><summary>YAML code for screenshot above</summary>
 
 ```yaml
 type: entities
 title: Options
+show_header_toggle: false
 entities:
   - type: custom:slider-entity-row
     entity: light.bed_light
@@ -78,6 +80,11 @@ entities:
     entity: light.bed_light
     name: hide_state
     hide_state: true
+  - type: custom:slider-entity-row
+    entity: light.bed_light
+    name: hide_state_no_grow
+    hide_state: true
+    grow: false
   - type: custom:slider-entity-row
     entity: light.ceiling_lights
     name: hide_when_off
@@ -103,11 +110,47 @@ The slider exposes the following theme variables:
 
 | Variable                          | Description                               | Default                                      |
 | --------------------------------- | ----------------------------------------- | -------------------------------------------- |
+| `--slider-entity-row-track-color` | Slider base track color | `var(--ha-slider-track-color, var(--disabled-color))` |
+| `--slider-entity-row-indicator-color` | Slider active indicator color | `var(--ha-slider-indicator-color, var(--primary-color))` |
+| `--slider-entity-row-thumb-color` | Slider thumb color | `var(--slider-entity-row-indicator-color, var(--ha-slider-thumb-color, var(--primary-color)))` |
 | `--slider-entity-row-thumb-size` | Slider thumb size                           | unset                              |
 | `--slider-entity-row-thumb-height` | Slider thumb height                       | `var(--slider-entity-row-thumb-size, 16px)`                             |
 | `--slider-entity-row-thumb-width`  | Slider thumb width                        | `var(--slider-entity-row-thumb-size, 16px)`                             |
+| `--slider-entity-row-slider-padding`  | Padding applied to slider. Use to fine tune slider thumb position. | `0 calc(var(--slider-entity-row-thumb-size, var(--slider-entity-row-thumb-width, 16px)) / 2)`                             |
+| `--slider-entity-row-thumb-hover-opacity`  | Hover opacity for the thumb             | `var(--ha-ripple-hover-opacity, 0.08)`                             |
+| `--slider-entity-row-thumb-pressed-opacity`  | Pressed opacity for the thumb while pressed                        | `var(--ha-ripple-pressed-opacity, 0.12)`        |
 | `--slider-entity-row-track-size`   | Slider track thickness                    | `var(--ha-slider-track-size, 4px)` |
-| `--slider-entity-row-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                          |
+| `--slider-entity-row-thumb-box-shadow`   | Box shadow for the slider thumb (`#thumb`) | `inherit`                          |
+| `--slider-entity-row-state-min-width`   | Minimum width of the state/toggle. Adjust to cater for large state values and still have sliders align for multiple rows. | `45px`                          |
+| `--slider-entity-row-tooltip-color` | Tooltip text color | `var(--ha-tooltip-text-color, var(--primary-text-color))` |
+| `--slider-entity-row-tooltip-font-size` | Tooltip font size | `var(--ha-tooltip-font-size, var(--ha-font-size-s))` |
+| `--slider-entity-row-tooltip-font-weight` | Tooltip font weight | `var(--ha-tooltip-font-weight, var(--ha-font-weight-normal))` |
+| `--slider-entity-row-tooltip-background-color` | Tooltip background color | `var(--ha-tooltip-background-color, var(--secondary-background-color))` |
+| `--slider-entity-row-tooltip-border-radius` | Tooltip border radius | `var(--ha-tooltip-border-radius, var(--ha-border-radius-sm))` |
+| `--slider-entity-row-tooltip-border-width` | Tooltip border width | `0px` |
+| `--slider-entity-row-tooltip-border-color` | Tooltip border color | `currentColor` |
+| `--slider-entity-row-tooltip-border-style` | Tooltip border style | `none` |
+
+
+When `colorize: true` is enabled, the row applies inline slider colors for supported attributes, which take precedence over these theme variables.
+
+Example Home Assistant theme (theme keys omit the leading `--` used in CSS):
+
+```yaml
+frontend:
+  themes:
+    slider_entity_row_example:
+      slider-entity-row-thumb-height: 14px
+      slider-entity-row-thumb-width: 14px
+      slider-entity-row-track-size: 2px
+      slider-entity-row-state-min-width: 52px
+      slider-entity-row-track-color: "#ffefea"
+      slider-entity-row-indicator-color: "#ee2400"
+      slider-entity-row-thumb-color: "#900000"
+      slider-entity-row-box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px
+```
+
+![theme example](docs/source/assets/images/04_theme.png)
 
 ### Attribute
 

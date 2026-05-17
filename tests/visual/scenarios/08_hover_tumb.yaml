@@ -1,0 +1,30 @@
+id: hover_thumb
+description: Slider thumb hover effect is visible when hovered during setup
+view_path: hover-thumb
+
+setup:
+  - type: ha_service
+    domain: light
+    service: turn_on
+    data:
+      entity_id: light.bed_light
+      brightness: 128
+
+card:
+  type: entities
+  show_header_toggle: false
+  entities:
+    - type: custom:slider-entity-row
+      entity: light.bed_light
+      name: hover_thumb
+
+interactions:
+  - type: hover
+    root: ha-slider.slider-entity-row
+    selector: "#thumb"
+
+assertions:
+  - type: slider_rows_have_sliders
+  - type: snapshot
+    name: 08_hover_thumb
+    threshold: 0.02
