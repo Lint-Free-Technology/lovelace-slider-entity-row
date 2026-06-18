@@ -28,7 +28,11 @@
     "rollup-plugin-typescript2": "^0.37.0",
     "semantic-release": "^25.0.5",
     "typescript": "^6.0.3",
-    "@babel/preset-env": "^7.29.7"
+    "@babel/preset-env": "^8.0.2",
+    "@babel/core": "^8.0.1"
+  },
+  "overrides": {
+    "@babel/core": "$@babel/core"
   },
   "dependencies": {
     "lit": "^3.3.2"
