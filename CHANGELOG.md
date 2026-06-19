@@ -1,3 +1,10 @@
+## [19.0.2](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v19.0.1...v19.0.2) (2026-06-18)
+
+### 📦 Dependency Upgrades
+
+* Bump @babel/core to 8.0.1 and @babel/preset-env from 7.29.7 to 8.0.2 managing plugin overrides ([#60](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/60)) ([3e6c3bf](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/3e6c3bfcc6013113b317e2eb74318a171c88dd46))
+* Bump @babel/core to 8.0.1 and @babel/preset-env from 7.29.7 to 8.0.2 managing plugin overrides ([#60](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/60)) ([#61](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/issues/61)) ([b973ba4](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/b973ba4290625580cf0f005160b415bca4ef9e8d))
+
 ## [19.0.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v19.0.0...v19.0.1) (2026-06-16)
 
 ### 📦 Dependency Upgrades
