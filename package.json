@@ -32,7 +32,11 @@
     "@babel/core": "^8.0.1"
   },
   "overrides": {
-    "@babel/core": "$@babel/core"
+    "@babel/core": "$@babel/core",
+    "conventional-changelog-angular": "^9.0.0",
+    "conventional-changelog-writer": "^9.0.0",
+    "conventional-commits-filter": "^6.0.0",
+    "conventional-commits-parser": "^7.0.0"
   },
   "dependencies": {
     "lit": "^3.3.2"
