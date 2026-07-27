@@ -58,7 +58,7 @@ Available options:
 | `colorize`      | `true`/`false` | Colorize the bar (only for some attributes). This uses inline styles and overrides slider theme color variables while enabled.            | `false`  |
 | `dir`           | `ltr`/`rtl`    | Use this to override your languages Right-To-Left or Left-To-Right setting                                                                | language |
 
-Most general Entities row options like `name`, `icon` and `tap_action` et.al. are also supported.
+Most general Entities row options like `name`, `icon`, `color` and `tap_action` et.al. are also supported. `color` options supported and passed onto the row, or icon in full row, are standard Home Assistant `color` options of `state`, `none`, a Home Assistant [color token](https://www.home-assistant.io/dashboards/tile/#available-colors), or a hex color code.
 
 ![options](docs/source/assets/images/03_options.png)
 
