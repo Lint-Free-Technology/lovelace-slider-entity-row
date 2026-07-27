@@ -1,3 +1,13 @@
+## [20.0.0-beta.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v19.0.2...v20.0.0-beta.1) (2026-07-27)
+
+### ⚠ BREAKING CHANGES
+
+* Home Assistant 2026.8.0 or greater required.
+
+### ⚙️ Miscellaneous
+
+* Migrate `state_color` to `color` for generic row config. Support `color` on icon in full row. `state_color: true` is migrated to `color: state`. `state_color: false` is migrated to `color: none`.  These changes reflect changes in Home Assistant 2026.8.0. ([7574a69](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/7574a69bce339bb47775288124ec68b7a19649ba))
+
 ## [19.0.2](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v19.0.1...v19.0.2) (2026-06-18)
 
 ### 📦 Dependency Upgrades
