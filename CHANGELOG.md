@@ -1,3 +1,9 @@
+## [20.0.0-beta.2](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v20.0.0-beta.1...v20.0.0-beta.2) (2026-07-28)
+
+### ⚙️ Miscellaneous
+
+* Set minimum HA Version to 2026.8.0.dev0 so HACS will allow against dev builds and greater. ([cacedaf](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/cacedafb8705d6fca1ee877e8c387de6b7ec46f8))
+
 ## [20.0.0-beta.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v19.0.2...v20.0.0-beta.1) (2026-07-27)
 
 ### ⚠ BREAKING CHANGES
