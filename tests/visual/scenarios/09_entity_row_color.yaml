@@ -1,0 +1,145 @@
+id: entity_row_color
+description: State_color and color options for rows with standard and full_row with icon.
+view_path: entity-row-color
+
+card:
+  type: entities
+  entities:
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      state_color: true
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      state_color: false
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      color: state
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      color: none
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      color: red
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      full_row: true
+      show_icon: true
+      state_color: true
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      full_row: true
+      show_icon: true
+      state_color: false
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      full_row: true
+      show_icon: true
+      color: state
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      full_row: true
+      show_icon: true
+      color: none
+    - type: custom:slider-entity-row
+      entity: fan.ceiling_fan
+      full_row: true
+      show_icon: true
+      color: red
+
+assertions:
+  - type: slider_rows_have_sliders
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(1) slider-entity-row"
+      - hui-generic-entity-row
+    selector: state-badge
+    property: stateColor
+    expected: undefined
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(2) slider-entity-row"
+      - hui-generic-entity-row
+    selector: state-badge
+    property: stateColor
+    expected: undefined
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(1) slider-entity-row"
+      - hui-generic-entity-row
+    selector: state-badge
+    property: color
+    expected: state
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(2) slider-entity-row"
+      - hui-generic-entity-row
+    selector: state-badge
+    property: color
+    expected: none
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(3) slider-entity-row"
+      - hui-generic-entity-row
+    selector: state-badge
+    property: color
+    expected: state
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(4) slider-entity-row"
+      - hui-generic-entity-row
+    selector: state-badge
+    property: color
+    expected: none
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(5) slider-entity-row"
+      - hui-generic-entity-row
+    selector: state-badge
+    property: color
+    expected: red
+
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(6) slider-entity-row"
+    selector: state-badge
+    property: stateColor
+    expected: undefined
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(7) slider-entity-row"
+    selector: state-badge
+    property: stateColor
+    expected: undefined
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(6) slider-entity-row"
+    selector: state-badge
+    property: color
+    expected: state
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(7) slider-entity-row"
+    selector: state-badge
+    property: color
+    expected: none
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(8) slider-entity-row"
+    selector: state-badge
+    property: color
+    expected: state
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(9) slider-entity-row"
+    selector: state-badge
+    property: color
+    expected: none
+  - type: object_property_text_equals
+    root:
+      - "#states div:nth-of-type(10) slider-entity-row"
+    selector: state-badge
+    property: color
+    expected: red
+  - type: snapshot
+    name: 09_entity_row_color
+    threshold: 0.02

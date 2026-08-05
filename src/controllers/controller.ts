@@ -15,6 +15,10 @@ export interface ControllerConfig {
   colorize?: boolean;
   show_icon?: boolean;
   tooltip_distance?: number;
+  icon?: string;
+  image?: string;
+  state_color?: boolean;
+  color?: string;
 }
 
 export abstract class Controller {

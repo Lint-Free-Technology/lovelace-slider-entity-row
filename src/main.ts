@@ -19,11 +19,14 @@ class SliderEntityRow extends LitElement {
   setConfig(config: ControllerConfig) {
     if (config.attribute === "color_temp_mired")
       throw Error("color_temp_mired has been removed");
-
+    
+    const { state_color, color, ...conf } = config;
+    const migratedStateColor = state_color === true ? "state" : state_color === false ? "none" : undefined;
     this._config = {
       tooltip_distance: 20,
       grow: true,
-      ...config,
+      color: color ?? migratedStateColor ?? "state",
+      ...conf,
     };
     if (!config.entity) throw new Error(`No entity specified.`);
     const domain = config.entity.split(".")[0];
@@ -157,15 +160,14 @@ class SliderEntityRow extends LitElement {
     if (this._config.full_row)
       if (this._config.hide_when_off && c.isOff) return html``;
       else if (this._config.show_icon === true) {
-        const conf = this._config as any;
         return html`
           <div class="wrapper">
             <state-badge
               .hass=${this.hass}
               .stateObj=${c.stateObj}
-              .overrideIcon=${conf.icon}
-              .overrideImage=${conf.image}
-              .stateColor=${conf.state_color}
+              .overrideIcon=${this._config.icon}
+              .overrideImage=${this._config.image}
+              .color=${this._config.color}
             ></state-badge>
             ${content}
           </div>
