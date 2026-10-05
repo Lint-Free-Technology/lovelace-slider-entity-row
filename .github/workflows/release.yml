@@ -61,7 +61,6 @@ jobs:
           exit 1
 
       - name: Install dependencies
-        if: ${{ !inputs.recover_release }}
         run: npm ci
 
       - name: Prepare release recovery
@@ -160,7 +159,7 @@ jobs:
         run: npm version '${{ steps.version.outputs.new_version }}' --no-git-tag-version
 
       - name: Build release files
-        if: ${{ !inputs.dry_run && steps.version.outputs.new_version != '' }}
+        if: ${{ !inputs.dry_run && (steps.version.outputs.new_version != '' || inputs.recover_release) }}
         run: npm run build
 
       - name: Update changelog
@@ -178,8 +177,7 @@ jobs:
           git add -- \
             CHANGELOG.md \
             package.json \
-            package-lock.json \
-            dist/slider-entity-row.js
+            package-lock.json
           git diff --cached --quiet && {
             echo 'The release did not change any tracked files.' >&2
             exit 1
@@ -196,6 +194,7 @@ jobs:
           tag_name: ${{ steps.version.outputs.new_tag }}
           target_commitish: ${{ steps.release_commit.outputs.sha }}
           body: ${{ steps.notes.outputs.changelog }}
+          files: dist/slider-entity-row.js
           prerelease: ${{ steps.version.outputs.prerelease }}
           make_latest: ${{ steps.version.outputs.prerelease == 'true' && 'false' || 'true' }}
 
@@ -206,6 +205,7 @@ jobs:
           tag_name: ${{ steps.recovery.outputs.tag }}
           target_commitish: ${{ github.sha }}
           body: ${{ steps.recovery_notes.outputs.changelog }}
+          files: dist/slider-entity-row.js
           prerelease: ${{ steps.recovery.outputs.prerelease }}
           make_latest: ${{ steps.recovery.outputs.prerelease == 'true' && 'false' || 'true' }}
 
