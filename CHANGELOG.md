@@ -1,4 +1,4 @@
-### [20.0.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v20.0.0...v20.0.1) (2026-10-05)
+## [20.0.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v20.0.0...v20.0.1) (2026-10-05)
 
 
 ### ⚙️ Miscellaneous
