@@ -5,13 +5,6 @@
 
 * Migrate release workflow tooling from semantic-release to focussed github actions. ([f7c7f5d](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/f7c7f5dc6a6ec8aefb2a383030dee1bc9b58de4c))
 
-### [20.0.1-beta.0](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v20.0.0...v20.0.1-beta.0) (2026-10-05)
-
-
-### ⚙️ Miscellaneous
-
-* Migrate release workflow tooling from semantic-release to focussed github actions. ([f7c7f5d](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/f7c7f5dc6a6ec8aefb2a383030dee1bc9b58de4c))
-
 ## [20.0.0](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v19.0.2...v20.0.0) (2026-08-05)
 
 ### ⚠ BREAKING CHANGES
