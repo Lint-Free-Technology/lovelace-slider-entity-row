@@ -1,3 +1,11 @@
+### [20.0.2](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v20.0.1...v20.0.2) (2026-11-05)
+
+
+### ⚙️ Miscellaneous
+
+* Update dependencies ([7a6fc92](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/7a6fc92830cb17142cb67864173de27c233863fc))
+* Update readme and test version for Home Assistant 2026.11.0 ([c042e4c](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/commit/c042e4c71b52a8bebed4d686c24742dd67df72cd))
+
 ## [20.0.1](https://github.com/Lint-Free-Technology/lovelace-slider-entity-row/compare/v20.0.0...v20.0.1) (2026-10-05)
 
 
