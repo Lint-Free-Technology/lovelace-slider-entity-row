@@ -2,6 +2,14 @@ id: entity_row_color
 description: State_color and color options for rows with standard and full_row with icon.
 view_path: entity-row-color
 
+setup:
+  - type: ha_service
+    domain: fan
+    service: turn_on
+    data:
+      entity_id: fan.ceiling_fan
+      percentage: 100
+
 card:
   type: entities
   entities:
